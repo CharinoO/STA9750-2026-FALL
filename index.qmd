@@ -1,26 +1,20 @@
 ---
 title: "STA9750 - Fall 2026"
-format: html
-editor: visual
 ---
-
-```{r}
-#| include: false
-1+1
-```
 
 ------------------------------------------------------------------------
 
 Last Updated: `r format(Sys.time(), "%A %m %d, %Y at %H:%M%p")`
 
 ```{r}
+#| echo: false
 #| message: false
 #| warning: false
 
 if(!require("leaflet")){
-    options(repos=c(CRAN="https://cloud.r-project.org"))
-    install.packages("leaflet")
-    stopifnot(require("leaflet"))
+  options(repos=c(CRAN="https://cloud.r-project.org"))
+  install.packages("leaflet")
+  stopifnot(require("leaflet"))
 }
 
 baruch_longitude <- -73.98333
