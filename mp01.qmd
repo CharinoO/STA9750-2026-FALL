@@ -15,6 +15,7 @@ execute:
 
 # What We Watched: Exploring Netflix Viewing Data
 
+<details>
 ```{r}
 #| code-fold: true
 #| code-summary: "Click here to show/hide the Code"
@@ -26,6 +27,7 @@ library(fs)
 library(skimr)
 library(gt)
 ```
+</details>
 
 ## Data Acquisition
 
@@ -587,6 +589,22 @@ NETFLIX_DATA |>
 
 
 ## Corporate Strategy Memo
+
+**TO: Netflix Leadership Team**\
+**Subject: Content Strategy for 2027 and Beyond**\
+
+
+**Summary**\
+As we head into 2027, staying as number 1 in streaming means we can't just guess what people want to watch and hoping people will choose Netflix over other streaming platform. We have take a look at the actual number, not just by what we believe. Based on the 2023 to first half of 2026 viewing hours data across the titles in Netflix, here's my take on how Netflix should tweak its original content game plan.\
+
+**1. Globally available vs. regionally licensed content**\
+I found out that effective as of 2023 to first half of 2026, there are total `r comma(by_title$n_global)` different contents that globally available of `r comma(by_title$n_all)` total contents. The percentage is just `{r} percent(by_title$n_percentage, accuracy = 2)`. From this small percentage, all contents that is globally available capable to accumulate total `{r} percent(by_hours$hours_percentage, accuracy = 2)`.\
+By this data, globally available contents dominated more than half of total viewed with only less than quarter number of titles across all titles. It showed that the contents that are available globally could make people to keep watching Netflix for long-term. \
+**Recommendation**: Keep the regionally licensed contents for short-term engagement buffer, but double down on global IP rights to secure long-term value.\
+
+**2. TV Shows vs. Movies**\
+TV Shows drive more than 97% of total watching hours for 3 years, starting from H2 2023 through H1 2026. TV shows are doing all the heavy lifting, no doubt, it's because of the long-runtime TV shows are keeping people glued to their screens week after week. Whereas, movies get watched once, then forgotten, and not so many people want to spend their time to rewatch the movie the finished watching.\
+**Recommendation**: Maintaining and adding more TV shows will be valuable to maximize ongoing subscriber retention, while movies can be the fuel to pull new subscribers who want to watch certain movies.\
 
 
 ## AI Usage Statement
