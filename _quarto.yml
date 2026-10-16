@@ -8,8 +8,12 @@ website:
     Course Projects for STA 9750 at Baruch College
   site-url: "https://CharinoO.github.io/STA9750-2026-FALL/"
   navbar:
-    background: primary
+    background: dark
+    foreground: light
     search: false
+    left:
+      - href: mp01.qmd
+        text: MP01 - Mini Project
     
 format:
   html:
