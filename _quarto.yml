@@ -12,12 +12,14 @@ website:
     foreground: light
     search: false
     left:
+      - href: index.qmd
+        text: Home
       - href: mp01.qmd
         text: MP01 - Mini Project
     
 format:
   html:
-    theme: THEME
+    theme: cosmo
     toc: false
 
 editor:
