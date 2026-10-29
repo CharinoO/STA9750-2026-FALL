@@ -598,7 +598,7 @@ NETFLIX_DATA |>
 As we head into 2027, staying as number 1 in streaming means we can't just guess what people want to watch and hoping people will choose Netflix over other streaming platform. We have take a look at the actual number, not just by what we believe. Based on the 2023 to first half of 2026 viewing hours data across the titles in Netflix, here's my take on how Netflix should tweak its original content game plan.\
 
 **1. Globally available vs. regionally licensed content**\
-I found out that effective as of 2023 to first half of 2026, there are total `r comma(by_title$n_global)` different contents that globally available of `r comma(by_title$n_all)` total contents. The percentage is just `{r} percent(by_title$n_percentage, accuracy = 2)`. From this small percentage, all contents that is globally available capable to accumulate total `{r} percent(by_hours$hours_percentage, accuracy = 2)`.\
+I found out that effective as of 2023 to first half of 2026, there are total `r comma(by_title$n_global)` different contents that globally available of `r comma(by_title$n_all)` total contents. The percentage is just 23.76%. From this small percentage, all contents that is globally available capable to accumulate total 52.08%.\
 By this data, globally available contents dominated more than half of total viewed with only less than quarter number of titles across all titles. It showed that the contents that are available globally could make people to keep watching Netflix for long-term. \
 **Recommendation**: Keep the regionally licensed contents for short-term engagement buffer, but double down on global IP rights to secure long-term value.\
 
