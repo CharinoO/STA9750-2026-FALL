@@ -16,6 +16,8 @@ website:
         text: Home
       - href: mp01.qmd
         text: MP01 - Mini Project
+      - href: mp02.qmd
+        text: MP02 - Mini Project
     
 format:
   html:
