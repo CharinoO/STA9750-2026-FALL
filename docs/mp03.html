@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Charino Oldan">
 
-<title>mp03 – STA 9750 Submission Material</title>
+<title>Where My People At? – STA 9750 Submission Material</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -101,6 +137,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./mp01.html"> 
 <span class="menu-text">MP01 - Mini Project</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mp02.html"> 
+<span class="menu-text">MP02 - Mini Project</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -111,24 +151,3671 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-1-data-acquisition" id="toc-part-1-data-acquisition" class="nav-link active" data-scroll-target="#part-1-data-acquisition">Part 1 — Data Acquisition</a>
+  <ul class="collapse">
+  <li><a href="#task-0-census-api-key" id="toc-task-0-census-api-key" class="nav-link" data-scroll-target="#task-0-census-api-key">Task 0: Census API Key</a></li>
+  <li><a href="#tasks-12-acs-population-data" id="toc-tasks-12-acs-population-data" class="nav-link" data-scroll-target="#tasks-12-acs-population-data">Tasks 1–2: ACS Population Data</a></li>
+  <li><a href="#task-3-download-nyc-neighborhood-tabulation-areas" id="toc-task-3-download-nyc-neighborhood-tabulation-areas" class="nav-link" data-scroll-target="#task-3-download-nyc-neighborhood-tabulation-areas">Task 3: Download NYC Neighborhood Tabulation Areas</a></li>
+  <li><a href="#task-4-aggregate-census-tracts-to-ntas" id="toc-task-4-aggregate-census-tracts-to-ntas" class="nav-link" data-scroll-target="#task-4-aggregate-census-tracts-to-ntas">Task 4: Aggregate Census Tracts to NTAs</a></li>
+  <li><a href="#task-5-download-pluto-with-pagination" id="toc-task-5-download-pluto-with-pagination" class="nav-link" data-scroll-target="#task-5-download-pluto-with-pagination">Task 5: Download PLUTO with Pagination</a></li>
+  </ul></li>
+  <li><a href="#eda" id="toc-eda" class="nav-link" data-scroll-target="#eda">Part 2 — Exploratory Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#q1.-which-census-tract-has-the-most-office-floor-area" id="toc-q1.-which-census-tract-has-the-most-office-floor-area" class="nav-link" data-scroll-target="#q1.-which-census-tract-has-the-most-office-floor-area">Q1. Which census tract has the most office floor area?</a></li>
+  <li><a href="#q2.-which-nta-has-the-most-residential-units" id="toc-q2.-which-nta-has-the-most-residential-units" class="nav-link" data-scroll-target="#q2.-which-nta-has-the-most-residential-units">Q2. Which NTA has the most residential units?</a></li>
+  <li><a href="#q3.-which-tracts-are-densest-relative-to-residential-area-and-residential-units" id="toc-q3.-which-tracts-are-densest-relative-to-residential-area-and-residential-units" class="nav-link" data-scroll-target="#q3.-which-tracts-are-densest-relative-to-residential-area-and-residential-units">Q3. Which tracts are densest relative to residential area and residential units?</a></li>
+  <li><a href="#q4.-which-five-non-nyc-metro-areas-have-the-largest-indonesian-american-share" id="toc-q4.-which-five-non-nyc-metro-areas-have-the-largest-indonesian-american-share" class="nav-link" data-scroll-target="#q4.-which-five-non-nyc-metro-areas-have-the-largest-indonesian-american-share">Q4. Which five non-NYC metro areas have the largest Indonesian-American share?</a></li>
+  <li><a href="#q5.-how-do-ancestry-groups-compare-in-another-large-metro-area" id="toc-q5.-how-do-ancestry-groups-compare-in-another-large-metro-area" class="nav-link" data-scroll-target="#q5.-how-do-ancestry-groups-compare-in-another-large-metro-area">Q5. How do ancestry groups compare in another large metro area?</a></li>
+  <li><a href="#q6.-what-share-of-indonesian-americans-live-in-new-york-and-major-metros" id="toc-q6.-what-share-of-indonesian-americans-live-in-new-york-and-major-metros" class="nav-link" data-scroll-target="#q6.-what-share-of-indonesian-americans-live-in-new-york-and-major-metros">Q6. What share of Indonesian Americans live in New York and major metros?</a></li>
+  <li><a href="#q7.-is-residential-floor-area-roughly-linearly-related-to-population" id="toc-q7.-is-residential-floor-area-roughly-linearly-related-to-population" class="nav-link" data-scroll-target="#q7.-is-residential-floor-area-roughly-linearly-related-to-population">Q7. Is residential floor area roughly linearly related to population?</a></li>
+  <li><a href="#q8.-which-ntas-contain-the-tallest-buildings" id="toc-q8.-which-ntas-contain-the-tallest-buildings" class="nav-link" data-scroll-target="#q8.-which-ntas-contain-the-tallest-buildings">Q8. Which NTAs contain the tallest buildings?</a></li>
+  <li><a href="#q9.-where-is-population-density-highest-across-nyc" id="toc-q9.-where-is-population-density-highest-across-nyc" class="nav-link" data-scroll-target="#q9.-where-is-population-density-highest-across-nyc">Q9. Where is population density highest across NYC?</a></li>
+  <li><a href="#q10.-how-many-residents-live-in-primarily-commercial-areas" id="toc-q10.-how-many-residents-live-in-primarily-commercial-areas" class="nav-link" data-scroll-target="#q10.-how-many-residents-live-in-primarily-commercial-areas">Q10. How many residents live in primarily commercial areas?</a></li>
+  </ul></li>
+  <li><a href="#part-3-welcomed-by-the-new-colossus-an-atlas-entry" id="toc-part-3-welcomed-by-the-new-colossus-an-atlas-entry" class="nav-link" data-scroll-target="#part-3-welcomed-by-the-new-colossus-an-atlas-entry">Part 3 — <em>Welcomed by the New Colossus</em>: An Atlas Entry</a>
+  <ul class="collapse">
+  <li><a href="#where-indonesian-americans-find-community-from-queens-to-the-rest-of-the-us" id="toc-where-indonesian-americans-find-community-from-queens-to-the-rest-of-the-us" class="nav-link" data-scroll-target="#where-indonesian-americans-find-community-from-queens-to-the-rest-of-the-us">Where Indonesian Americans Find Community, From Queens to the Rest of the US</a>
+  <ul class="collapse">
+  <li><a href="#map-1-indonesian-american-share-of-nyc-neighborhoods" id="toc-map-1-indonesian-american-share-of-nyc-neighborhoods" class="nav-link" data-scroll-target="#map-1-indonesian-american-share-of-nyc-neighborhoods">Map 1: Indonesian-American Share of NYC Neighborhoods</a></li>
+  <li><a href="#map-2-population-density-in-nyc" id="toc-map-2-population-density-in-nyc" class="nav-link" data-scroll-target="#map-2-population-density-in-nyc">Map 2: Population Density in NYC</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#data-quality-limitations-and-sources" id="toc-data-quality-limitations-and-sources" class="nav-link" data-scroll-target="#data-quality-limitations-and-sources">Data Quality, Limitations and Sources</a></li>
+  <li><a href="#ai-usage-statement" id="toc-ai-usage-statement" class="nav-link" data-scroll-target="#ai-usage-statement">AI Usage Statement</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Where My People At?</h1>
+<p class="subtitle lead">Indonesian Americans in New York City and Across the United States</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<table class="caption-top table">
-<tbody>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Charino Oldan </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>DATA_DIR <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(<span class="st">"data"</span>, <span class="st">"mp03"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">dir_create</span>(DATA_DIR, <span class="at">recurse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ACS_YEAR <span class="ot">&lt;-</span> <span class="dv">2024</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>GROUP <span class="ot">&lt;-</span> <span class="st">"Indonesian"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>GROUP_VAR <span class="ot">&lt;-</span> <span class="st">"B02018_013"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Run census_api_key("YOUR_KEY", install = TRUE) ONCE in the</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># R console, not in this document. Then restart R.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">nzchar</span>(<span class="fu">Sys.getenv</span>(<span class="st">"CENSUS_API_KEY"</span>))) {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Census API key missing. Set it once using tidycensus::census_api_key() in the console."</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Cache ordinary Census tables as CSV and geographic tables as GeoPackage.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>load_csv_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(path, fetch) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(path)) <span class="fu">return</span>(readr<span class="sc">::</span><span class="fu">read_csv</span>(path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">fetch</span>()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(x, path)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>load_sf_cache <span class="ot">&lt;-</span> <span class="cf">function</span>(path, fetch) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(path)) <span class="fu">return</span>(sf<span class="sc">::</span><span class="fu">st_read</span>(path, <span class="at">quiet =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">fetch</span>()</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_write</span>(x, path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>fmt <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">accuracy =</span> <span class="dv">1</span>) scales<span class="sc">::</span><span class="fu">number</span>(x, <span class="at">accuracy =</span> accuracy)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>pct <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">accuracy =</span> <span class="fl">0.1</span>) scales<span class="sc">::</span><span class="fu">percent</span>(x, <span class="at">accuracy =</span> accuracy)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>map_theme <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">17</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray35"</span>),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray40"</span>, <span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="part-1-data-acquisition" class="level1">
+<h1>Part 1 — Data Acquisition</h1>
+<section id="task-0-census-api-key" class="level2">
+<h2 class="anchored" data-anchor-id="task-0-census-api-key">Task 0: Census API Key</h2>
+<p>The Census API key is stored in the local R environment and <strong>not</strong> in this report. It can be obtained from <a href="https://api.census.gov/data/key_signup.html">the U.S. Census Bureau</a>. The one-time console command is <code>tidycensus::census_api_key("YOUR_KEY", install = TRUE)</code>.</p>
+</section>
+<section id="tasks-12-acs-population-data" class="level2">
+<h2 class="anchored" data-anchor-id="tasks-12-acs-population-data">Tasks 1–2: ACS Population Data</h2>
+<p>This report uses the <strong>2020–2024 ACS five-year estimates</strong> for consistency across metro areas, census tracts, states, and the United States. I chose <code>B02018_013</code> because it counts anyone who reported being <strong>Indonesian alone or in combination with another group</strong>, including people born in the US. The code <code>B02018_010</code> is for Burmese respondents. The 2025 ACS one-year data are newer, but they don’t include tract-level estimates. I put the group name in each saved filename so I don’t accidentally reuse data from a different group.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ACS_VARS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">indonesian =</span> <span class="st">"B02018_013"</span>, <span class="at">total =</span> <span class="st">"B01003_001"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">chinese =</span> <span class="st">"B02018_002"</span>, <span class="at">japanese =</span> <span class="st">"B02018_004"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">filipino =</span> <span class="st">"B02018_012"</span>, <span class="at">median_income =</span> <span class="st">"B19013_001"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Nationwide CBSA-level data, including other Asian population groups</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>CBSA <span class="ot">&lt;-</span> <span class="fu">load_csv_cache</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="fu">paste0</span>(<span class="st">"cbsa_indonesian_acs5_"</span>, ACS_YEAR, <span class="st">".csv"</span>)),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>() tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">geography =</span> <span class="st">"cbsa"</span>, <span class="at">variables =</span> ACS_VARS,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ACS_YEAR, <span class="at">survey =</span> <span class="st">"acs5"</span>, <span class="at">output =</span> <span class="st">"wide"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Five NYC counties; geometry is mandatory for the spatial analysis</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>NYC_COUNTIES <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Bronx"</span>, <span class="st">"Kings"</span>, <span class="st">"New York"</span>, <span class="st">"Queens"</span>, <span class="st">"Richmond"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>TRACTS <span class="ot">&lt;-</span> <span class="fu">load_sf_cache</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="fu">paste0</span>(<span class="st">"nyc_tracts_indonesian_acs5_"</span>, ACS_YEAR, <span class="st">".gpkg"</span>)),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>() tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">geography =</span> <span class="st">"tract"</span>, <span class="at">state =</span> <span class="st">"NY"</span>, <span class="at">county =</span> NYC_COUNTIES,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables =</span> <span class="fu">c</span>(<span class="at">indonesian =</span> GROUP_VAR, <span class="at">total =</span> <span class="st">"B01003_001"</span>),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ACS_YEAR, <span class="at">survey =</span> <span class="st">"acs5"</span>, <span class="at">output =</span> <span class="st">"wide"</span>, <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># A common ACS-5 denominator for the US and New York State</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>US <span class="ot">&lt;-</span> <span class="fu">load_csv_cache</span>(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="fu">paste0</span>(<span class="st">"us_indonesian_acs5_"</span>, ACS_YEAR, <span class="st">".csv"</span>)),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>() tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">geography =</span> <span class="st">"us"</span>, <span class="at">variables =</span> <span class="fu">c</span>(<span class="at">indonesian =</span> GROUP_VAR, <span class="at">total =</span> <span class="st">"B01003_001"</span>),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ACS_YEAR, <span class="at">survey =</span> <span class="st">"acs5"</span>, <span class="at">output =</span> <span class="st">"wide"</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>STATES <span class="ot">&lt;-</span> <span class="fu">load_csv_cache</span>(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="fu">paste0</span>(<span class="st">"states_indonesian_acs5_"</span>, ACS_YEAR, <span class="st">".csv"</span>)),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>() tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">geography =</span> <span class="st">"state"</span>, <span class="at">variables =</span> <span class="fu">c</span>(<span class="at">indonesian =</span> GROUP_VAR, <span class="at">total =</span> <span class="st">"B01003_001"</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ACS_YEAR, <span class="at">survey =</span> <span class="st">"acs5"</span>, <span class="at">output =</span> <span class="st">"wide"</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="task-3-download-nyc-neighborhood-tabulation-areas" class="level2">
+<h2 class="anchored" data-anchor-id="task-3-download-nyc-neighborhood-tabulation-areas">Task 3: Download NYC Neighborhood Tabulation Areas</h2>
+<p>The Neighborhood Tabulation Area (NTA) shapefile is downloaded from <strong>NYC Open Data</strong> and read it with sf. This step works separately from <code>tidycensus</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>load_nyc_nta <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  zip_file <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="st">"nyc_nta_2020.zip"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  unzip_dir <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="st">"nyc_nta_2020"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(zip_file)) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">download.file</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/neighborhood-tabulation-areas/nynta2020_26d.zip"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">destfile =</span> zip_file, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">method =</span> <span class="st">"libcurl"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(unzip_dir) <span class="sc">||</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">length</span>(<span class="fu">list.files</span>(unzip_dir, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.shp$"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">dir_create</span>(unzip_dir)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unzip</span>(zip_file, <span class="at">exdir =</span> unzip_dir)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> <span class="fu">list.files</span>(unzip_dir, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.shp$"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(shp) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"No .shp file found. Check NTA ZIP download."</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shp[[<span class="dv">1</span>]], <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(x))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">c</span>(<span class="st">"nta2020"</span>, <span class="st">"ntaname"</span>) <span class="sc">%in%</span> <span class="fu">names</span>(x)))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span> <span class="fu">select</span>(nta2020, ntaname)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>NYC_NTA <span class="ot">&lt;-</span> <span class="fu">load_nyc_nta</span>() <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_make_valid</span>() <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">2263</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>TRACTS <span class="ot">&lt;-</span> TRACTS <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_make_valid</span>() <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">2263</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="task-4-aggregate-census-tracts-to-ntas" class="level2">
+<h2 class="anchored" data-anchor-id="task-4-aggregate-census-tracts-to-ntas">Task 4: Aggregate Census Tracts to NTAs</h2>
+<p>Some census tracts cross NTA boundaries. When that happens, I assign the whole tract to the NTA that covers the <strong>largest part of the tract</strong>. That makes the neighborhood counts approximate.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>TRACT_NTA <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_join</span>(TRACTS, NYC_NTA <span class="sc">|&gt;</span> <span class="fu">select</span>(nta2020), <span class="at">largest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>NTA_COUNTS <span class="ot">&lt;-</span> TRACT_NTA <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nta2020)) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nta2020) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">population =</span> <span class="fu">sum</span>(totalE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">indonesian =</span> <span class="fu">sum</span>(indonesianE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>NTA_MAP <span class="ot">&lt;-</span> NYC_NTA <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(NTA_COUNTS, <span class="at">by =</span> <span class="st">"nta2020"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">indonesian_share =</span> <span class="fu">if_else</span>(population <span class="sc">&gt;</span> <span class="dv">0</span>, indonesian <span class="sc">/</span> population, <span class="cn">NA_real_</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="task-5-download-pluto-with-pagination" class="level2">
+<h2 class="anchored" data-anchor-id="task-5-download-pluto-with-pagination">Task 5: Download PLUTO with Pagination</h2>
+<p>I used <code>$limit</code> and <code>$offset</code> to download PLUTO in batches through NYC’s Socrata API. I requested only the columns I needed, combined the batches, and saved the result locally. For residential units, the field is <strong>unitsres</strong>. Using unitsses would refer to a misspelled field name.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>load_pluto <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">page_size =</span> <span class="dv">20000</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  out_file <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(DATA_DIR, <span class="st">"pluto_selected.csv"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(out_file)) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(readr<span class="sc">::</span><span class="fu">read_csv</span>(out_file,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">bbl =</span> <span class="fu">col_character</span>(), <span class="at">bct2020 =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">.default =</span> <span class="fu">col_double</span>())))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  endpoint <span class="ot">&lt;-</span> <span class="st">"https://data.cityofnewyork.us/resource/64uk-42ks.csv"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  pages <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  offset <span class="ot">&lt;-</span> <span class="dv">0</span>L</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">repeat</span> {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    temporary <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".csv"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">request</span>(endpoint) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      httr2<span class="sc">::</span><span class="fu">req_url_query</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">$select</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"bbl,bct2020,officearea,resarea,unitsres,numfloors,landuse"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">$order</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"bbl ASC"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">$limit</span><span class="st">`</span> <span class="ot">=</span> page_size,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">$offset</span><span class="st">`</span> <span class="ot">=</span> offset</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      httr2<span class="sc">::</span><span class="fu">req_retry</span>(<span class="at">max_tries =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      httr2<span class="sc">::</span><span class="fu">req_perform</span>(<span class="at">path =</span> temporary)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    part <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(temporary,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">bbl =</span> <span class="fu">col_character</span>(), <span class="at">bct2020 =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                       <span class="at">.default =</span> <span class="fu">col_double</span>()), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlink</span>(temporary)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    pages[[<span class="fu">length</span>(pages) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> part</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">nrow</span>(part) <span class="sc">&lt;</span> page_size) <span class="cf">break</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    offset <span class="ot">&lt;-</span> offset <span class="sc">+</span> page_size</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="fl">0.2</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(pages)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(result) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"PLUTO returned no data."</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(result, out_file)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  result</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>PLUTO <span class="ot">&lt;-</span> <span class="fu">load_pluto</span>()</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># bct2020 is the seven-digit borough + 2020 census-tract code.</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert it to the 11-digit New York Census tract GEOID.</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>BORO_COUNTY <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1"</span> <span class="ot">=</span> <span class="st">"061"</span>, <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"005"</span>, <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"047"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"4"</span> <span class="ot">=</span> <span class="st">"081"</span>, <span class="st">"5"</span> <span class="ot">=</span> <span class="st">"085"</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>PLUTO <span class="ot">&lt;-</span> PLUTO <span class="sc">|&gt;</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bct2020 =</span> <span class="fu">str_trim</span>(bct2020),</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>         <span class="at">tract_valid =</span> <span class="fu">str_detect</span>(bct2020, <span class="st">"^[1-5][0-9]{6}$"</span>),</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>         <span class="at">geoid =</span> <span class="fu">if_else</span>(</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>           tract_valid,</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>           <span class="fu">paste0</span>(<span class="st">"36"</span>, BORO_COUNTY[<span class="fu">str_sub</span>(bct2020, <span class="dv">1</span>, <span class="dv">1</span>)],</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">str_sub</span>(bct2020, <span class="dv">2</span>, <span class="dv">7</span>)),</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NA_character_</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>         ))</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>PLUTO_TRACT <span class="ot">&lt;-</span> PLUTO <span class="sc">|&gt;</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(geoid)) <span class="sc">|&gt;</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(geoid) <span class="sc">|&gt;</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">officearea =</span> <span class="fu">sum</span>(officearea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>            <span class="at">resarea =</span> <span class="fu">sum</span>(resarea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">unitsres =</span> <span class="fu">sum</span>(unitsres, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_floors =</span> <span class="fu">max</span>(<span class="fu">c</span>(<span class="dv">0</span>, numfloors), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>TRACT_METRICS <span class="ot">&lt;-</span> TRACT_NTA <span class="sc">|&gt;</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, NAME, nta2020, totalE, indonesianE) <span class="sc">|&gt;</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(PLUTO_TRACT, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"GEOID"</span> <span class="ot">=</span> <span class="st">"geoid"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(officearea, resarea, unitsres, max_floors),</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="dv">0</span>)),</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>         <span class="at">per_1000_res_sqft =</span> <span class="fu">if_else</span>(resarea <span class="sc">&gt;</span> <span class="dv">0</span>, totalE <span class="sc">/</span> resarea <span class="sc">*</span> <span class="dv">1000</span>, <span class="cn">NA_real_</span>),</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>         <span class="at">per_res_unit =</span> <span class="fu">if_else</span>(unitsres <span class="sc">&gt;</span> <span class="dv">0</span>, totalE <span class="sc">/</span> unitsres, <span class="cn">NA_real_</span>))</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>NTA_BUILDINGS <span class="ot">&lt;-</span> TRACT_METRICS <span class="sc">|&gt;</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nta2020)) <span class="sc">|&gt;</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nta2020) <span class="sc">|&gt;</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">unitsres =</span> <span class="fu">sum</span>(unitsres),</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>            <span class="at">resarea =</span> <span class="fu">sum</span>(resarea),</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>            <span class="at">officearea =</span> <span class="fu">sum</span>(officearea),</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>            <span class="at">tallest_floors =</span> <span class="fu">max</span>(max_floors), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(NYC_NTA <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(nta2020, ntaname), <span class="at">by =</span> <span class="st">"nta2020"</span>)</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Metro-area analysis: do not conflate population share with raw counts.</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>CBSA_METRO <span class="ot">&lt;-</span> CBSA <span class="sc">|&gt;</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(NAME, <span class="fu">regex</span>(<span class="st">"Metro Area"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(indonesianE), <span class="sc">!</span><span class="fu">is.na</span>(totalE), totalE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">indonesian_share =</span> indonesianE <span class="sc">/</span> totalE)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>NYC_METRO_PATTERN <span class="ot">&lt;-</span> <span class="fu">regex</span>(<span class="st">"New York-Newark-Jersey City"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>TOP5_METROS <span class="ot">&lt;-</span> CBSA_METRO <span class="sc">|&gt;</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(NAME, NYC_METRO_PATTERN)) <span class="sc">|&gt;</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(indonesian_share)) <span class="sc">|&gt;</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(TOP5_METROS) <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="fu">stop</span>(<span class="st">"Fewer than 5 non-NYC metro areas found."</span>)</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose a large city / metro from those top five.</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>PROFILE_METRO <span class="ot">&lt;-</span> TOP5_METROS <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(totalE)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>PROFILE_DATA <span class="ot">&lt;-</span> PROFILE_METRO <span class="sc">|&gt;</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chineseE, japaneseE, indonesianE, filipinoE) <span class="sc">|&gt;</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"ancestry"</span>, <span class="at">values_to =</span> <span class="st">"residents"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ancestry =</span> <span class="fu">recode</span>(ancestry, <span class="at">chineseE =</span> <span class="st">"Chinese (except Taiwanese)"</span>,</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>                           <span class="at">japaneseE =</span> <span class="st">"Japanese"</span>, <span class="at">indonesianE =</span> <span class="st">"Indonesian"</span>,</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>                           <span class="at">filipinoE =</span> <span class="st">"Filipino"</span>))</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>US_INDONESIAN <span class="ot">&lt;-</span> US<span class="sc">$</span>indonesianE[[<span class="dv">1</span>]]</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>NY_INDONESIAN <span class="ot">&lt;-</span> STATES <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(NAME, <span class="st">"^New York$"</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(indonesianE)</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(NY_INDONESIAN) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">||</span> US_INDONESIAN <span class="sc">&lt;=</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"US / NY Indonesian population not found."</span>)</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>TOP10_MAJOR_METROS <span class="ot">&lt;-</span> CBSA_METRO <span class="sc">|&gt;</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(NAME, NYC_METRO_PATTERN), totalE <span class="sc">&gt;=</span> <span class="dv">1000000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(indonesianE)) <span class="sc">|&gt;</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>TOP_NTA <span class="ot">&lt;-</span> NTA_MAP <span class="sc">|&gt;</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(indonesian_share), population <span class="sc">&gt;=</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(indonesian_share)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>TRACT_SPATIAL <span class="ot">&lt;-</span> TRACT_NTA <span class="sc">|&gt;</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    <span class="at">area_sq_mile =</span> <span class="fu">as.numeric</span>(</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_area</span>(TRACT_NTA)</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">/</span> <span class="dv">27878400</span>,</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">pop_sq_mile =</span> <span class="fu">if_else</span>(</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>      area_sq_mile <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>      totalE <span class="sc">/</span> area_sq_mile,</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">indonesian_share =</span> <span class="fu">if_else</span>(</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>      totalE <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>      indonesianE <span class="sc">/</span> totalE,</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="eda" class="level1">
+<h1>Part 2 — Exploratory Data Analysis</h1>
+<section id="q1.-which-census-tract-has-the-most-office-floor-area" class="level2">
+<h2 class="anchored" data-anchor-id="q1.-which-census-tract-has-the-most-office-floor-area">Q1. Which census tract has the most office floor area?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>TOP_OFFICE <span class="ot">&lt;-</span> TRACT_METRICS <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(officearea)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>TOP_OFFICE <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Tract =</span> NAME, <span class="st">`</span><span class="at">Office area (sq ft)</span><span class="st">`</span> <span class="ot">=</span> officearea) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Office area (sq ft)</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"NYC Census Tracts with the Most Office Floor Area"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">"Source: NYC PLUTO; 2020 tract identifiers."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="yrxztmsyjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yrxztmsyjq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yrxztmsyjq thead, #yrxztmsyjq tbody, #yrxztmsyjq tfoot, #yrxztmsyjq tr, #yrxztmsyjq td, #yrxztmsyjq th {
+  border-style: none;
+}
+
+#yrxztmsyjq p {
+  margin: 0;
+  padding: 0;
+}
+
+#yrxztmsyjq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yrxztmsyjq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yrxztmsyjq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yrxztmsyjq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yrxztmsyjq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yrxztmsyjq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yrxztmsyjq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yrxztmsyjq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yrxztmsyjq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yrxztmsyjq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yrxztmsyjq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yrxztmsyjq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yrxztmsyjq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yrxztmsyjq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yrxztmsyjq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yrxztmsyjq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yrxztmsyjq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yrxztmsyjq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yrxztmsyjq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yrxztmsyjq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yrxztmsyjq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yrxztmsyjq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yrxztmsyjq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yrxztmsyjq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yrxztmsyjq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yrxztmsyjq .gt_left {
+  text-align: left;
+}
+
+#yrxztmsyjq .gt_center {
+  text-align: center;
+}
+
+#yrxztmsyjq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yrxztmsyjq .gt_font_normal {
+  font-weight: normal;
+}
+
+#yrxztmsyjq .gt_font_bold {
+  font-weight: bold;
+}
+
+#yrxztmsyjq .gt_font_italic {
+  font-style: italic;
+}
+
+#yrxztmsyjq .gt_super {
+  font-size: 65%;
+}
+
+#yrxztmsyjq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yrxztmsyjq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yrxztmsyjq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yrxztmsyjq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yrxztmsyjq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yrxztmsyjq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yrxztmsyjq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#yrxztmsyjq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#yrxztmsyjq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">NYC Census Tracts with the Most Office Floor Area</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Tract" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Tract</th>
+<th id="Office-area-(sq-ft)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Office area (sq ft)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td>title: “Mini-Project Placeholder”</td>
+<td class="gt_row gt_left" headers="Tract">Census Tract 9; New York County; New York</td>
+<td class="gt_row gt_right" headers="Office-area-(sq-ft)">18,354,103</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Tract">Census Tract 13; New York County; New York</td>
+<td class="gt_row gt_right" headers="Office-area-(sq-ft)">16,889,181</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Tract">Census Tract 113; New York County; New York</td>
+<td class="gt_row gt_right" headers="Office-area-(sq-ft)">15,679,979</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Tract">Census Tract 94; New York County; New York</td>
+<td class="gt_row gt_right" headers="Office-area-(sq-ft)">15,433,200</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Tract">Census Tract 7; New York County; New York</td>
+<td class="gt_row gt_right" headers="Office-area-(sq-ft)">14,608,640</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="2" class="gt_sourcenote">Source: NYC PLUTO; 2020 tract identifiers.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>The leading tract is <strong>Census Tract 9; New York County; New York</strong>, with approximately <strong>18 354 103 square feet</strong> of recorded office space.</p>
+</section>
+<section id="q2.-which-nta-has-the-most-residential-units" class="level2">
+<h2 class="anchored" data-anchor-id="q2.-which-nta-has-the-most-residential-units">Q2. Which NTA has the most residential units?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>TOP_UNITS <span class="ot">&lt;-</span> NTA_BUILDINGS <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(unitsres)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>TOP_UNITS <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Neighborhood =</span> ntaname, <span class="st">`</span><span class="at">Residential units</span><span class="st">`</span> <span class="ot">=</span> unitsres) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Residential units</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Neighborhoods with the Most Residential Units"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">"PLUTO units allocated from tracts to largest-overlap NTAs."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="atwqwczgha" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#atwqwczgha table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#atwqwczgha thead, #atwqwczgha tbody, #atwqwczgha tfoot, #atwqwczgha tr, #atwqwczgha td, #atwqwczgha th {
+  border-style: none;
+}
+
+#atwqwczgha p {
+  margin: 0;
+  padding: 0;
+}
+
+#atwqwczgha .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#atwqwczgha .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#atwqwczgha .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#atwqwczgha .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#atwqwczgha .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#atwqwczgha .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#atwqwczgha .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#atwqwczgha .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#atwqwczgha .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#atwqwczgha .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#atwqwczgha .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#atwqwczgha .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#atwqwczgha .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#atwqwczgha .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#atwqwczgha .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#atwqwczgha .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#atwqwczgha .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#atwqwczgha .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#atwqwczgha .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#atwqwczgha .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#atwqwczgha .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#atwqwczgha .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#atwqwczgha .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#atwqwczgha .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#atwqwczgha .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#atwqwczgha .gt_left {
+  text-align: left;
+}
+
+#atwqwczgha .gt_center {
+  text-align: center;
+}
+
+#atwqwczgha .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#atwqwczgha .gt_font_normal {
+  font-weight: normal;
+}
+
+#atwqwczgha .gt_font_bold {
+  font-weight: bold;
+}
+
+#atwqwczgha .gt_font_italic {
+  font-style: italic;
+}
+
+#atwqwczgha .gt_super {
+  font-size: 65%;
+}
+
+#atwqwczgha .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#atwqwczgha .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#atwqwczgha .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#atwqwczgha .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#atwqwczgha .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#atwqwczgha .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#atwqwczgha .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#atwqwczgha .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#atwqwczgha div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Neighborhoods with the Most Residential Units</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Neighborhood" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Neighborhood</th>
+<th id="Residential-units" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Residential units</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Upper East Side-Lenox Hill-Roosevelt Island</td>
+<td class="gt_row gt_right" headers="Residential-units">60,306</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Upper West Side (Central)</td>
+<td class="gt_row gt_right" headers="Residential-units">57,314</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Upper East Side-Yorkville</td>
+<td class="gt_row gt_right" headers="Residential-units">50,986</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Chelsea-Hudson Yards</td>
+<td class="gt_row gt_right" headers="Residential-units">46,130</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Upper West Side-Lincoln Square</td>
+<td class="gt_row gt_right" headers="Residential-units">45,384</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="2" class="gt_sourcenote">PLUTO units allocated from tracts to largest-overlap NTAs.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>The NTA with the most recorded residential units is <strong>Upper East Side-Lenox Hill-Roosevelt Island</strong>, with approximately <strong>60 306 units</strong>.</p>
+</section>
+<section id="q3.-which-tracts-are-densest-relative-to-residential-area-and-residential-units" class="level2">
+<h2 class="anchored" data-anchor-id="q3.-which-tracts-are-densest-relative-to-residential-area-and-residential-units">Q3. Which tracts are densest relative to residential area and residential units?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>DENSE_BY_AREA <span class="ot">&lt;-</span> TRACT_METRICS <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(resarea <span class="sc">&gt;</span> <span class="dv">0</span>, totalE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_1000_res_sqft)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>DENSE_BY_UNIT <span class="ot">&lt;-</span> TRACT_METRICS <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(unitsres <span class="sc">&gt;</span> <span class="dv">0</span>, totalE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_res_unit)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Density measure</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Residents per 1,000 residential sq ft"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Residents per residential unit"</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Top tract</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(DENSE_BY_AREA<span class="sc">$</span>NAME[[<span class="dv">1</span>]], DENSE_BY_UNIT<span class="sc">$</span>NAME[[<span class="dv">1</span>]]),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(DENSE_BY_AREA<span class="sc">$</span>per_1000_res_sqft[[<span class="dv">1</span>]],</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>              DENSE_BY_UNIT<span class="sc">$</span>per_res_unit[[<span class="dv">1</span>]])</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">fmt_number</span>(Value, <span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="cjhyqlwkcr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cjhyqlwkcr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#cjhyqlwkcr thead, #cjhyqlwkcr tbody, #cjhyqlwkcr tfoot, #cjhyqlwkcr tr, #cjhyqlwkcr td, #cjhyqlwkcr th {
+  border-style: none;
+}
+
+#cjhyqlwkcr p {
+  margin: 0;
+  padding: 0;
+}
+
+#cjhyqlwkcr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cjhyqlwkcr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cjhyqlwkcr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cjhyqlwkcr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cjhyqlwkcr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cjhyqlwkcr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cjhyqlwkcr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cjhyqlwkcr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cjhyqlwkcr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cjhyqlwkcr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cjhyqlwkcr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cjhyqlwkcr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cjhyqlwkcr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cjhyqlwkcr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cjhyqlwkcr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cjhyqlwkcr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cjhyqlwkcr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cjhyqlwkcr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cjhyqlwkcr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cjhyqlwkcr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cjhyqlwkcr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cjhyqlwkcr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cjhyqlwkcr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cjhyqlwkcr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cjhyqlwkcr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cjhyqlwkcr .gt_left {
+  text-align: left;
+}
+
+#cjhyqlwkcr .gt_center {
+  text-align: center;
+}
+
+#cjhyqlwkcr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cjhyqlwkcr .gt_font_normal {
+  font-weight: normal;
+}
+
+#cjhyqlwkcr .gt_font_bold {
+  font-weight: bold;
+}
+
+#cjhyqlwkcr .gt_font_italic {
+  font-style: italic;
+}
+
+#cjhyqlwkcr .gt_super {
+  font-size: 65%;
+}
+
+#cjhyqlwkcr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cjhyqlwkcr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cjhyqlwkcr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cjhyqlwkcr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cjhyqlwkcr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cjhyqlwkcr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cjhyqlwkcr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#cjhyqlwkcr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#cjhyqlwkcr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Density-measure" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Density measure</th>
+<th id="Top-tract" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Top tract</th>
+<th id="Value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Density-measure">Residents per 1,000 residential sq ft</td>
+<td class="gt_row gt_left" headers="Top-tract">Census Tract 18.01; Kings County; New York</td>
+<td class="gt_row gt_right" headers="Value">236.70</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Density-measure">Residents per residential unit</td>
+<td class="gt_row gt_left" headers="Top-tract">Census Tract 18.01; Kings County; New York</td>
+<td class="gt_row gt_right" headers="Value">794.00</td>
 </tr>
 </tbody>
 </table>
-<p>This is a placeholder for STA9750 Mini-Project 3. Check back soon for more!</p>
+
+</div>
+</div>
+</div>
+<p>Both definitions select the same tract. A tract with very little residential space or very few units can end up with a high ratio. I’d treat those tracts as cases that stand out. The ratios alone can’t tell us which tract is the most crowded.</p>
+</section>
+<section id="q4.-which-five-non-nyc-metro-areas-have-the-largest-indonesian-american-share" class="level2">
+<h2 class="anchored" data-anchor-id="q4.-which-five-non-nyc-metro-areas-have-the-largest-indonesian-american-share">Q4. Which five non-NYC metro areas have the largest Indonesian-American share?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>TOP5_METROS <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Metro area</span><span class="st">`</span> <span class="ot">=</span> NAME, <span class="st">`</span><span class="at">Indonesian residents</span><span class="st">`</span> <span class="ot">=</span> indonesianE,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Total population</span><span class="st">`</span> <span class="ot">=</span> totalE, <span class="st">`</span><span class="at">Indonesian share</span><span class="st">`</span> <span class="ot">=</span> indonesian_share) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Indonesian residents</span><span class="st">`</span>, <span class="st">`</span><span class="at">Total population</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="st">`</span><span class="at">Indonesian share</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Highest Indonesian-American Population Shares Outside NYC"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">"Source: ACS 2020–2024 five-year estimates, table B02018."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="glalhbsyty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#glalhbsyty table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#glalhbsyty thead, #glalhbsyty tbody, #glalhbsyty tfoot, #glalhbsyty tr, #glalhbsyty td, #glalhbsyty th {
+  border-style: none;
+}
+
+#glalhbsyty p {
+  margin: 0;
+  padding: 0;
+}
+
+#glalhbsyty .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#glalhbsyty .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#glalhbsyty .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#glalhbsyty .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#glalhbsyty .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#glalhbsyty .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#glalhbsyty .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#glalhbsyty .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#glalhbsyty .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#glalhbsyty .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#glalhbsyty .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#glalhbsyty .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#glalhbsyty .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#glalhbsyty .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#glalhbsyty .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#glalhbsyty .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#glalhbsyty .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#glalhbsyty .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#glalhbsyty .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#glalhbsyty .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#glalhbsyty .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#glalhbsyty .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#glalhbsyty .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#glalhbsyty .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#glalhbsyty .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#glalhbsyty .gt_left {
+  text-align: left;
+}
+
+#glalhbsyty .gt_center {
+  text-align: center;
+}
+
+#glalhbsyty .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#glalhbsyty .gt_font_normal {
+  font-weight: normal;
+}
+
+#glalhbsyty .gt_font_bold {
+  font-weight: bold;
+}
+
+#glalhbsyty .gt_font_italic {
+  font-style: italic;
+}
+
+#glalhbsyty .gt_super {
+  font-size: 65%;
+}
+
+#glalhbsyty .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#glalhbsyty .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#glalhbsyty .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#glalhbsyty .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#glalhbsyty .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#glalhbsyty .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#glalhbsyty .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#glalhbsyty .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#glalhbsyty div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Highest Indonesian-American Population Shares Outside NYC</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Metro-area" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Metro area</th>
+<th id="Indonesian-residents" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Indonesian residents</th>
+<th id="Total-population" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total population</th>
+<th id="Indonesian-share" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Indonesian share</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">Carson City, NV Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">155</td>
+<td class="gt_row gt_right" headers="Total-population">58,384</td>
+<td class="gt_row gt_right" headers="Indonesian-share">0.27%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Pocatello, ID Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">229</td>
+<td class="gt_row gt_right" headers="Total-population">89,454</td>
+<td class="gt_row gt_right" headers="Indonesian-share">0.26%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">Riverside-San Bernardino-Ontario, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">11,694</td>
+<td class="gt_row gt_right" headers="Total-population">4,675,704</td>
+<td class="gt_row gt_right" headers="Indonesian-share">0.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Minot, ND Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">162</td>
+<td class="gt_row gt_right" headers="Total-population">76,484</td>
+<td class="gt_row gt_right" headers="Indonesian-share">0.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">San Francisco-Oakland-Fremont, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">8,594</td>
+<td class="gt_row gt_right" headers="Total-population">4,645,029</td>
+<td class="gt_row gt_right" headers="Indonesian-share">0.19%</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Source: ACS 2020–2024 five-year estimates, table B02018.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>For each metro area, I looked at <strong>what percentage of its residents are Indonesian American</strong>. A smaller metro can rank high even if a larger metro has more Indonesian Americans.</p>
+</section>
+<section id="q5.-how-do-ancestry-groups-compare-in-another-large-metro-area" class="level2">
+<h2 class="anchored" data-anchor-id="q5.-how-do-ancestry-groups-compare-in-another-large-metro-area">Q5. How do ancestry groups compare in another large metro area?</h2>
+<p>Of the five metro areas from Q4, <strong>Riverside-San Bernardino-Ontario, CA Metro Area</strong> has the largest overall population, so I chose it for a closer look. The chart covers four Asian-origin groups. Since people can report more than one group in the ACS, someone can be counted in more than one bar.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PROFILE_DATA <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residents, <span class="at">y =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(ancestry, residents))) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#397D97"</span>, <span class="at">width =</span> <span class="fl">0.65</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Selected Ancestries in"</span>, PROFILE_METRO<span class="sc">$</span>NAME[[<span class="dv">1</span>]]),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estimated residents"</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: U.S. Census ACS 2020–2024; groups may overlap."</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-metro-profile" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-metro-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mp03_files/figure-html/fig-metro-profile-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metro-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Selected Asian population groups in a large non-NYC metro area. ACS 2020–2024, B02018.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="q6.-what-share-of-indonesian-americans-live-in-new-york-and-major-metros" class="level2">
+<h2 class="anchored" data-anchor-id="q6.-what-share-of-indonesian-americans-live-in-new-york-and-major-metros">Q6. What share of Indonesian Americans live in New York and major metros?</h2>
+<p>The ACS estimates that <strong>159 564</strong> Indonesian Americans live in the US. About <strong>9 392</strong> live in New York State, which is <strong>5.9%</strong> of the US total.</p>
+<p>I also looked at metro areas outside the NYC metro with at least one million residents and picked the ten with the most Indonesian Americans. Together, they’re home to an estimated <strong>74 422</strong> Indonesian Americans, or <strong>46.6%</strong> of the US total. I keep this comparison separate from the state figure because adding them could count some people twice.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>TOP10_MAJOR_METROS <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Metro area</span><span class="st">`</span> <span class="ot">=</span> NAME, <span class="st">`</span><span class="at">Indonesian residents</span><span class="st">`</span> <span class="ot">=</span> indonesianE) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Indonesian residents</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Major Metro Areas with the Most Indonesian-American Residents"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="ajjfwaaehx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ajjfwaaehx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ajjfwaaehx thead, #ajjfwaaehx tbody, #ajjfwaaehx tfoot, #ajjfwaaehx tr, #ajjfwaaehx td, #ajjfwaaehx th {
+  border-style: none;
+}
+
+#ajjfwaaehx p {
+  margin: 0;
+  padding: 0;
+}
+
+#ajjfwaaehx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ajjfwaaehx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ajjfwaaehx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ajjfwaaehx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ajjfwaaehx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ajjfwaaehx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ajjfwaaehx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ajjfwaaehx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ajjfwaaehx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ajjfwaaehx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ajjfwaaehx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ajjfwaaehx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ajjfwaaehx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ajjfwaaehx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ajjfwaaehx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ajjfwaaehx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ajjfwaaehx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ajjfwaaehx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ajjfwaaehx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ajjfwaaehx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ajjfwaaehx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ajjfwaaehx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ajjfwaaehx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ajjfwaaehx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ajjfwaaehx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ajjfwaaehx .gt_left {
+  text-align: left;
+}
+
+#ajjfwaaehx .gt_center {
+  text-align: center;
+}
+
+#ajjfwaaehx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ajjfwaaehx .gt_font_normal {
+  font-weight: normal;
+}
+
+#ajjfwaaehx .gt_font_bold {
+  font-weight: bold;
+}
+
+#ajjfwaaehx .gt_font_italic {
+  font-style: italic;
+}
+
+#ajjfwaaehx .gt_super {
+  font-size: 65%;
+}
+
+#ajjfwaaehx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ajjfwaaehx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ajjfwaaehx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ajjfwaaehx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ajjfwaaehx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ajjfwaaehx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ajjfwaaehx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ajjfwaaehx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ajjfwaaehx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Major Metro Areas with the Most Indonesian-American Residents</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Metro-area" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Metro area</th>
+<th id="Indonesian-residents" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Indonesian residents</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">Los Angeles-Long Beach-Anaheim, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">22,168</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Riverside-San Bernardino-Ontario, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">11,694</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">San Francisco-Oakland-Fremont, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">8,594</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">6,594</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">Seattle-Tacoma-Bellevue, WA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">5,751</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Houston-Pasadena-The Woodlands, TX Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">4,457</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">San Diego-Chula Vista-Carlsbad, CA Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">4,309</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Philadelphia-Camden-Wilmington, PA-NJ-DE-MD Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">4,299</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Metro-area">Boston-Cambridge-Newton, MA-NH Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">3,311</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Metro-area">Chicago-Naperville-Elgin, IL-IN Metro Area</td>
+<td class="gt_row gt_right" headers="Indonesian-residents">3,245</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="q7.-is-residential-floor-area-roughly-linearly-related-to-population" class="level2">
+<h2 class="anchored" data-anchor-id="q7.-is-residential-floor-area-roughly-linearly-related-to-population">Q7. Is residential floor area roughly linearly related to population?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>TRACT_METRICS <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(resarea <span class="sc">&gt;</span> <span class="dv">0</span>, totalE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> resarea <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">y =</span> totalE)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">1.3</span>, <span class="at">color =</span> <span class="st">"#367D9C"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#B34C42"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#2C8C63"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Population and Residential Floor Area"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Red: linear fit; green: flexible LOESS fit"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Residential floor area (million sq ft)"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Estimated residents"</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-pop-housing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pop-housing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mp03_files/figure-html/fig-pop-housing-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pop-housing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Population versus residential floor area by NYC tract. ACS 2020–2024 and NYC PLUTO.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The red line shows the straight-line fit, and the green line can follow a curve. Where the two pull apart, the relationship may be less linear. The plot alone can’t tell us whether one variable causes a change in the other.</p>
+</section>
+<section id="q8.-which-ntas-contain-the-tallest-buildings" class="level2">
+<h2 class="anchored" data-anchor-id="q8.-which-ntas-contain-the-tallest-buildings">Q8. Which NTAs contain the tallest buildings?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>NTA_BUILDINGS <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(tallest_floors)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Neighborhood =</span> ntaname, <span class="st">`</span><span class="at">Maximum reported floors</span><span class="st">`</span> <span class="ot">=</span> tallest_floors) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">Maximum reported floors</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"NTAs Containing the Tallest Buildings"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">"Height proxy: maximum PLUTO numfloors within constituent tracts."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="hoypluutdx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hoypluutdx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hoypluutdx thead, #hoypluutdx tbody, #hoypluutdx tfoot, #hoypluutdx tr, #hoypluutdx td, #hoypluutdx th {
+  border-style: none;
+}
+
+#hoypluutdx p {
+  margin: 0;
+  padding: 0;
+}
+
+#hoypluutdx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hoypluutdx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hoypluutdx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hoypluutdx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hoypluutdx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hoypluutdx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hoypluutdx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hoypluutdx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hoypluutdx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hoypluutdx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hoypluutdx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hoypluutdx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hoypluutdx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hoypluutdx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hoypluutdx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hoypluutdx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hoypluutdx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hoypluutdx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hoypluutdx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hoypluutdx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hoypluutdx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hoypluutdx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hoypluutdx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hoypluutdx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hoypluutdx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hoypluutdx .gt_left {
+  text-align: left;
+}
+
+#hoypluutdx .gt_center {
+  text-align: center;
+}
+
+#hoypluutdx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hoypluutdx .gt_font_normal {
+  font-weight: normal;
+}
+
+#hoypluutdx .gt_font_bold {
+  font-weight: bold;
+}
+
+#hoypluutdx .gt_font_italic {
+  font-style: italic;
+}
+
+#hoypluutdx .gt_super {
+  font-size: 65%;
+}
+
+#hoypluutdx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hoypluutdx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hoypluutdx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hoypluutdx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hoypluutdx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hoypluutdx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hoypluutdx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hoypluutdx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hoypluutdx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">NTAs Containing the Tallest Buildings</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Neighborhood" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Neighborhood</th>
+<th id="Maximum-reported-floors" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Maximum reported floors</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Borough Park</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">342.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Financial District-Battery Park City</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">104.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Midtown South-Flatiron-Union Square</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">102.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Midtown-Times Square</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">98.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">East Midtown-Turtle Bay</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">77.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Downtown Brooklyn-DUMBO-Boerum Hill</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">74.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Chinatown-Two Bridges</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">72.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Chelsea-Hudson Yards</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">71.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Neighborhood">Tribeca-Civic Center</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">70.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Neighborhood">Long Island City-Hunters Point</td>
+<td class="gt_row gt_right" headers="Maximum-reported-floors">69.0</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="2" class="gt_sourcenote">Height proxy: maximum PLUTO numfloors within constituent tracts.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="q9.-where-is-population-density-highest-across-nyc" class="level2">
+<h2 class="anchored" data-anchor-id="q9.-where-is-population-density-highest-across-nyc">Q9. Where is population density highest across NYC?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(TRACT_SPATIAL) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> pop_sq_mile), <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">trans =</span> <span class="st">"sqrt"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">label_comma</span>(), <span class="at">na.value =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"New York City's Population Density"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Census tracts • people per square mile"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"People / sq mi"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: ACS 2020–2024; Census tract boundaries via tidycensus."</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_theme</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-nyc-pop-density" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nyc-pop-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mp03_files/figure-html/fig-nyc-pop-density-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nyc-pop-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Estimated residents per square mile at census tract level. ACS 2020–2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="q10.-how-many-residents-live-in-primarily-commercial-areas" class="level2">
+<h2 class="anchored" data-anchor-id="q10.-how-many-residents-live-in-primarily-commercial-areas">Q10. How many residents live in primarily commercial areas?</h2>
+<p>I count a tract as primarily office-commercial if it has <strong>more recorded office space than residential space</strong> and <strong>at least 100,000 square feet of office space</strong>. I focused on offices here and left retail and industrial space out of the definition.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>COMMERCIAL_TRACTS <span class="ot">&lt;-</span> TRACT_METRICS <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(officearea <span class="sc">&gt;</span> resarea, officearea <span class="sc">&gt;=</span> <span class="dv">100000</span>, totalE <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>COMMERCIAL_POP <span class="ot">&lt;-</span> <span class="fu">sum</span>(COMMERCIAL_TRACTS<span class="sc">$</span>totalE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>NYC_TRACT_POP <span class="ot">&lt;-</span> <span class="fu">sum</span>(TRACT_METRICS<span class="sc">$</span>totalE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Using that definition, about <strong>155 743 residents</strong>, or <strong>1.8% of NYC’s tract-level population</strong>, live in the <strong>62 tracts</strong> that meet both conditions.</p>
+</section>
+</section>
+<section id="part-3-welcomed-by-the-new-colossus-an-atlas-entry" class="level1">
+<h1>Part 3 — <em>Welcomed by the New Colossus</em>: An Atlas Entry</h1>
+<section id="where-indonesian-americans-find-community-from-queens-to-the-rest-of-the-us" class="level2">
+<h2 class="anchored" data-anchor-id="where-indonesian-americans-find-community-from-queens-to-the-rest-of-the-us">Where Indonesian Americans Find Community, From Queens to the Rest of the US</h2>
+<p><em>A look at how people came here, where they live, and where they meet.</em></p>
+<p>When people talk about immigrant communities in New York, it’s easy to picture a neighborhood with a name everyone recognizes. For Indonesian New Yorkers, the connections spread across neighborhoods. People stay connected through food, language, places of worship, businesses, and friends, even when they come from different ethnic or religious backgrounds or arrived at different times. One place those connections show up is Elmhurst in Queens. The International Institute for Asian Studies describes how Indonesian-owned food shops and other meeting places fit into a neighborhood shared by many communities. <a href="https://blog.iias.asia/index.php/node/198"><em>Ali &amp; Ratu Ratu Queens: The Indonesian Diaspora in New York City</em></a>.</p>
+<p>If you’re visiting, I’d start in Elmhurst. At a local grocery you might find an ingredient you’ve been looking for, and at a community event you might hear people speaking Bahasa Indonesia. These everyday places bring people together, including those who live elsewhere. Religious groups are part of that story too. Indonesian Christians were already meeting in New York in the late 1970s, and those gatherings eventually led to the formation of Perwakrin in 1983. Other Indonesian New Yorkers meet through Muslim organizations, mosques, or groups outside of religion. Each is one part of the broader community.<a href="https://www.perwakrinusa.org/about">Perwakrin USA</a>.</p>
+<p>So where do Indonesian Americans live? I used the 2020–2024 American Community Survey five-year estimates to look at that question. Across the US, about 159 564 people reported being Indonesian alone or in combination with another group. About 9 392 live in New York State, or 5.9% of the US estimate. Within NYC, I compared NTAs with at least 1,000 residents. Elmhurst had the highest estimated share, with about 2.8% of its residents identifying as Indonesian. People can live in one neighborhood and go to another to shop, worship, or see friends, so the neighborhood that ranks first can be different from the place visitors know best.</p>
+<p>Looking beyond the NYC metro area, Carson City, NV Metro Area had the highest estimated Indonesian share among the metros I compared, at about 0.3%. I also wanted to see where the largest numbers of people live. Among non-NYC metros with at least one million residents, the ten with the most Indonesian residents are home to about 74 422 in total. That’s 46.6% of the US estimate. A smaller metro can rank high by percentage even when a bigger metro has more Indonesian residents.</p>
+<p>The first map shows what share of each NYC neighborhood’s residents identify as Indonesian. The second shows how closely people live together overall, by census tract. A densely populated tract could have a small Indonesian community. A neighborhood could also have a high Indonesian share and still have relatively few Indonesian residents. I’d be careful about reading too much into small differences between neighborhoods because the numbers come from a survey and some tracts cross neighborhood boundaries.</p>
+<p>Indonesian Americans came to the US at different times and in different ways, including as students, professionals, and families. For someone visiting, I’d use the maps to decide where to start. Visiting a community gathering place, trying the food, and listening to people’s stories can tell you more about what it’s like to live there. <a href="https://www.foundationsandfutures.org/chapter/maya-soetoro-and-the-making-of-indonesian-america/module-2-indonesian-american-history/">History of Indonesian Americans</a>.</p>
+<section id="map-1-indonesian-american-share-of-nyc-neighborhoods" class="level3">
+<h3 class="anchored" data-anchor-id="map-1-indonesian-american-share-of-nyc-neighborhoods">Map 1: Indonesian-American Share of NYC Neighborhoods</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NTA_MAP) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> indonesian_share), <span class="at">linewidth =</span> <span class="fl">0.08</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="fl">0.1</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">na.value =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Indonesian-American Communities Across NYC"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Estimated share of NTA residents reporting Indonesian identity"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Indonesian share"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Sources: ACS 2020–2024, NYC Department of City Planning 2020 NTAs.</span><span class="sc">\n</span><span class="st">Tracts are assigned by largest geographic intersection."</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_theme</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-nta-indonesian-share" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nta-indonesian-share-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mp03_files/figure-html/fig-nta-indonesian-share-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nta-indonesian-share-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Percent reporting Indonesian alone or in any combination. Source: ACS 2020–2024, aggregated to NYC’s 2020 NTAs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="map-2-population-density-in-nyc" class="level3">
+<h3 class="anchored" data-anchor-id="map-2-population-density-in-nyc">Map 2: Population Density in NYC</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(TRACT_SPATIAL) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> pop_sq_mile), <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">trans =</span> <span class="st">"sqrt"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> comma, <span class="at">na.value =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"A Different Geography: NYC's Residential Density"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Census tract population per square mile"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"People / sq mi"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: ACS 2020–2024 and Census tract boundaries."</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_theme</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-density-atlas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-density-atlas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mp03_files/figure-html/fig-density-atlas-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-atlas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Population density in people per square mile. Source: ACS 2020–2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="data-quality-limitations-and-sources" class="level1">
+<h1>Data Quality, Limitations and Sources</h1>
+<p>I used <strong>2020–2024 ACS five-year survey estimates</strong>, so the counts are approximate. People who reported Indonesian <strong>alone or in combination</strong> are included, which means the same person can appear in more than one group. I didn’t use the ACS margins of error in the rankings, so a small gap between two places may just reflect sampling uncertainty. The neighborhood totals also depend on where I assigned each tract. When a tract crosses a boundary, all its residents count toward the NTA with the largest overlap. PLUTO and the ACS cover slightly different times, so I use the ratios per square foot and per unit as rough descriptions. I also chose the office-commercial cutoff for this analysis. It’s separate from the city’s official zoning classifications.</p>
+<p>Sources: <a href="https://www.census.gov/programs-surveys/acs">U.S. Census Bureau ACS</a>, <a href="https://api.census.gov/data/2024/acs/acs5/groups/B02018.html">ACS B02018 Indonesian variable</a>, <a href="https://data.cityofnewyork.us/City-Government/2020-Neighborhood-Tabulation-Areas-NTAs-/9nt8-h7nd">NYC Open Data NTAs</a>, <a href="https://data.cityofnewyork.us/City-Government/Primary-Land-Use-Tax-Lot-Output-PLUTO-/64uk-42ks/about_data">NYC Open Data PLUTO</a>, <a href="https://www.perwakrinusa.org/about">Perwakrin USA</a>, <a href="https://blog.iias.asia/index.php/node/198">International Institute for Asian Studies</a>, and <a href="https://www.foundationsandfutures.org/chapter/maya-soetoro-and-the-making-of-indonesian-america/module-2-indonesian-american-history/">Foundations and Futures</a>.</p>
+</section>
+<section id="ai-usage-statement" class="level1">
+<h1>AI Usage Statement</h1>
+<div class="callout callout-style-default callout-note callout-titled" title="AI Usage Statement">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>AI Usage Statement
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ChatGPT was used to help write and fix some of the code in this project, but all non-code text was generated without the use of any Generative AI tools. Additionally, ChatGPT was used to provide additional background information on the topic and to brainstorm ideas for the final open-ended prompt.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

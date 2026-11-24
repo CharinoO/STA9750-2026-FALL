@@ -15,9 +15,11 @@ website:
       - href: index.qmd
         text: Home
       - href: mp01.qmd
-        text: MP01 - Mini Project
+        text: MP01 - What We Watched: Exploring Netflix Viewing Data
       - href: mp02.qmd
-        text: MP02 - Mini Project
+        text: MP02 - Green Transit Alliance Awards
+      - href: mp03.qmd
+        text: MP03 - Where My People At?
     
 format:
   html:
