@@ -164,11 +164,15 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./mp01.html" aria-current="page"> 
-<span class="menu-text">MP01 - Mini Project</span></a>
+<span class="menu-text">MP01 - Exploring Netflix Viewing Data</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./mp02.html"> 
-<span class="menu-text">MP02 - Mini Project</span></a>
+<span class="menu-text">MP02 - Green Transit Alliance Awards</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mp03.html"> 
+<span class="menu-text">MP03 - Where My People At?</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -247,9 +251,18 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'scales' was built under R version 4.6.2</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click here to show/hide the Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.6.2</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.2.1     ✔ readr     2.2.0
@@ -266,7 +279,7 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>
@@ -278,11 +291,20 @@ The following object is masked from 'package:readr':
 </div>
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'fs' was built under R version 4.6.2</code></pre>
+</div>
+<details class="code-fold">
+<summary>Click here to show/hide the Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'gt' was built under R version 4.6.2</code></pre>
+</div>
 </div>
 </details>
 <section id="data-acquisition" class="level2">
@@ -290,117 +312,117 @@ The following object is masked from 'package:readr':
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Acquire Netflix What We Watched Reports</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' This function will acquire and standardize all data for MP#01</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' from Netflix. Because Netflix hosts the data files behind a CDN, we</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' are accessing the release pages and automatically extracting links to the</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' relevant files (with CDN hash). </span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' After import, files are stacked vertically and some basic cleaning is</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' performed. </span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' Acquire Netflix What We Watched Reports</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' This function will acquire and standardize all data for MP#01</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' from Netflix. Because Netflix hosts the data files behind a CDN, we</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' are accessing the release pages and automatically extracting links to the</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' relevant files (with CDN hash). </span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' After import, files are stacked vertically and some basic cleaning is</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' performed. </span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>load_netflix_data <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Note to students: Make sure you have installed the tidyverse and fs packages</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   before beginning this assignment. If you aren't sure,</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   simply run `library(tidyverse)` at your R Console and, if</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   you don't see an error message, `tidyverse` has been </span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   installed. (Same for `fs`) If you still need to install</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   either package, use the `install.packages` function as </span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   demonstrated in class.</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  data_dir <span class="ot">&lt;-</span> <span class="fu">path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir_exists</span>(data_dir)){</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir_create</span>(data_dir, <span class="at">showWarnings=</span><span class="cn">FALSE</span>, <span class="at">recurse=</span><span class="cn">TRUE</span>)</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  NETFLIX_URLS <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2023H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-a-netflix-engagement-report"</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2023H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2023"</span>,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2024H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2024"</span>,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2024H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2024"</span>,</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2025H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2025"</span>,</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2025H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2025"</span>,</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2026H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2026"</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  download_if_needed <span class="ot">&lt;-</span> <span class="cf">function</span>(url, local){</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file_exists</span>(local)){</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">download.file</span>(url, local, <span class="at">quiet =</span> <span class="cn">TRUE</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(local)</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  NETFLIX_URLS <span class="sc">|&gt;</span> </span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(read_html) <span class="sc">|&gt;</span> </span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(html_element, <span class="at">xpath =</span> <span class="st">"//a[contains(@href, '.xlsx')]"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_chr</span>(html_attr, <span class="st">"href"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enframe</span>(<span class="st">"period"</span>, <span class="st">"url"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">path =</span> <span class="fu">path</span>(data_dir, <span class="fu">paste0</span>(period, <span class="st">".xlsx"</span>)), </span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>           <span class="at">path =</span> <span class="fu">map2</span>(url, path, download_if_needed), </span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> <span class="fu">map</span>(path, read_excel, <span class="at">skip=</span><span class="dv">3</span>, <span class="at">na=</span><span class="st">"*"</span>), </span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> <span class="fu">map</span>(data, \(x) x <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Release Date</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">`</span><span class="at">Release Date</span><span class="st">`</span>)))) <span class="sc">|&gt;</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(data) <span class="sc">|&gt;</span> </span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>url, <span class="sc">-</span>path) <span class="sc">|&gt;</span> </span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">str_sub</span>(period, <span class="dv">1</span>, <span class="dv">4</span>), </span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>           <span class="at">half=</span><span class="fu">str_sub</span>(period, <span class="at">start=</span><span class="dv">6</span>), </span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>           <span class="at">period_start =</span> <span class="fu">make_date</span>(year, <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">7</span>), <span class="dv">1</span>), </span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>           <span class="at">period_end =</span> <span class="fu">make_date</span>(year, <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">12</span>), <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">31</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Hours Viewed</span><span class="st">`</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">live_event =</span> <span class="sc">!</span><span class="fu">is.na</span>(Runtime) <span class="sc">&amp;</span> <span class="fu">str_detect</span>(Runtime, <span class="st">"</span><span class="sc">\\</span><span class="st">d+:</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">*"</span>), </span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>           <span class="at">clean_time =</span> <span class="fu">str_remove</span>(Runtime, <span class="fu">fixed</span>(<span class="st">"*"</span>)),</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>           <span class="at">Runtime =</span> <span class="dv">60</span> <span class="sc">*</span> <span class="fu">hour</span>(<span class="fu">hm</span>(clean_time)) <span class="sc">+</span> <span class="fu">minute</span>(<span class="fu">hm</span>(clean_time))) <span class="sc">|&gt;</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>clean_time) <span class="sc">|&gt;</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Runtime =</span> <span class="fu">coalesce</span>(Runtime, <span class="fu">mean</span>(Runtime, <span class="at">na.rm=</span><span class="cn">TRUE</span>)), </span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>           <span class="at">.by=</span>Title, </span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(Title, <span class="st">"Latin-ASCII"</span>),</span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_remove</span>(Title, <span class="st">" // .*"</span>), </span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_remove</span>(Title, <span class="st">"[^[:ascii:]].*"</span>), </span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_trim</span>(Title)) <span class="sc">|&gt;</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter_out</span>(Title <span class="sc">==</span> <span class="st">""</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year, </span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>           period, </span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>           period_start, </span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>           period_end, </span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>           Title, </span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>half, </span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>           Runtime, </span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>           Views, </span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Hours Viewed</span><span class="st">`</span>, </span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Release Date</span><span class="st">`</span>,</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Available Globally?</span><span class="st">`</span>, </span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>           live_event) <span class="sc">|&gt;</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_with</span>(clean_column_name)</span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for renaming the columns by following the 4 rules listed on the web.</span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>clean_column_name <span class="ot">&lt;-</span> <span class="cf">function</span>(column_name){</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  column_name <span class="ot">&lt;-</span> column_name <span class="sc">|&gt;</span></span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># All lower-case</span></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tolower</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If multi-word, separated by underscores (_) not spaces</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Only numbers and simple letters, no punctuation or accents</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"[^a-z0-9_]"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Starting with a letter</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"^[^a-z]"</span>, <span class="st">""</span>, <span class="at">x =</span> _)</span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(column_name)</span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> <span class="fu">load_netflix_data</span>()</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>ORIGINAL_NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="co">#  to store the original Netflix data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Acquire Netflix What We Watched Reports</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' This function will acquire and standardize all data for MP#01</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' from Netflix. Because Netflix hosts the data files behind a CDN, we</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' are accessing the release pages and automatically extracting links to the</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' relevant files (with CDN hash). </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' After import, files are stacked vertically and some basic cleaning is</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' performed. </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' Acquire Netflix What We Watched Reports</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' This function will acquire and standardize all data for MP#01</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' from Netflix. Because Netflix hosts the data files behind a CDN, we</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' are accessing the release pages and automatically extracting links to the</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' relevant files (with CDN hash). </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' After import, files are stacked vertically and some basic cleaning is</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' performed. </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>load_netflix_data <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Note to students: Make sure you have installed the tidyverse and fs packages</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   before beginning this assignment. If you aren't sure,</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   simply run `library(tidyverse)` at your R Console and, if</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   you don't see an error message, `tidyverse` has been </span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   installed. (Same for `fs`) If you still need to install</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   either package, use the `install.packages` function as </span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                   demonstrated in class.</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  data_dir <span class="ot">&lt;-</span> <span class="fu">path</span>(<span class="st">"data"</span>, <span class="st">"mp01"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir_exists</span>(data_dir)){</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dir_create</span>(data_dir, <span class="at">showWarnings=</span><span class="cn">FALSE</span>, <span class="at">recurse=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  NETFLIX_URLS <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2023H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-a-netflix-engagement-report"</span>,</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2023H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2023"</span>,</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2024H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2024"</span>,</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2024H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2024"</span>,</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2025H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2025"</span>,</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2025H2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-second-half-of-2025"</span>,</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2026H1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://about.netflix.com/news/what-we-watched-the-first-half-of-2026"</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  download_if_needed <span class="ot">&lt;-</span> <span class="cf">function</span>(url, local){</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file_exists</span>(local)){</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">download.file</span>(url, local, <span class="at">quiet =</span> <span class="cn">TRUE</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(local)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  NETFLIX_URLS <span class="sc">|&gt;</span> </span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(read_html) <span class="sc">|&gt;</span> </span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(html_element, <span class="at">xpath =</span> <span class="st">"//a[contains(@href, '.xlsx')]"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_chr</span>(html_attr, <span class="st">"href"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enframe</span>(<span class="st">"period"</span>, <span class="st">"url"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">path =</span> <span class="fu">path</span>(data_dir, <span class="fu">paste0</span>(period, <span class="st">".xlsx"</span>)), </span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>           <span class="at">path =</span> <span class="fu">map2</span>(url, path, download_if_needed), </span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> <span class="fu">map</span>(path, read_excel, <span class="at">skip=</span><span class="dv">3</span>, <span class="at">na=</span><span class="st">"*"</span>), </span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> <span class="fu">map</span>(data, \(x) x <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Release Date</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="st">`</span><span class="at">Release Date</span><span class="st">`</span>)))) <span class="sc">|&gt;</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(data) <span class="sc">|&gt;</span> </span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>url, <span class="sc">-</span>path) <span class="sc">|&gt;</span> </span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">str_sub</span>(period, <span class="dv">1</span>, <span class="dv">4</span>), </span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>           <span class="at">half=</span><span class="fu">str_sub</span>(period, <span class="at">start=</span><span class="dv">6</span>), </span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>           <span class="at">period_start =</span> <span class="fu">make_date</span>(year, <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">7</span>), <span class="dv">1</span>), </span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>           <span class="at">period_end =</span> <span class="fu">make_date</span>(year, <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">12</span>), <span class="fu">if_else</span>(half<span class="sc">==</span><span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">31</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Hours Viewed</span><span class="st">`</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">live_event =</span> <span class="sc">!</span><span class="fu">is.na</span>(Runtime) <span class="sc">&amp;</span> <span class="fu">str_detect</span>(Runtime, <span class="st">"</span><span class="sc">\\</span><span class="st">d+:</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">*"</span>), </span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>           <span class="at">clean_time =</span> <span class="fu">str_remove</span>(Runtime, <span class="fu">fixed</span>(<span class="st">"*"</span>)),</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>           <span class="at">Runtime =</span> <span class="dv">60</span> <span class="sc">*</span> <span class="fu">hour</span>(<span class="fu">hm</span>(clean_time)) <span class="sc">+</span> <span class="fu">minute</span>(<span class="fu">hm</span>(clean_time))) <span class="sc">|&gt;</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>clean_time) <span class="sc">|&gt;</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Runtime =</span> <span class="fu">coalesce</span>(Runtime, <span class="fu">mean</span>(Runtime, <span class="at">na.rm=</span><span class="cn">TRUE</span>)), </span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>           <span class="at">.by=</span>Title, </span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(Title, <span class="st">"Latin-ASCII"</span>),</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_remove</span>(Title, <span class="st">" // .*"</span>), </span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_remove</span>(Title, <span class="st">"[^[:ascii:]].*"</span>), </span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>           <span class="at">Title =</span> <span class="fu">str_trim</span>(Title)) <span class="sc">|&gt;</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter_out</span>(Title <span class="sc">==</span> <span class="st">""</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(year, </span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>           period, </span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>           period_start, </span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>           period_end, </span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>           Title, </span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>           <span class="sc">-</span>half, </span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>           Runtime, </span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>           Views, </span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Hours Viewed</span><span class="st">`</span>, </span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Release Date</span><span class="st">`</span>,</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Available Globally?</span><span class="st">`</span>, </span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>           live_event) <span class="sc">|&gt;</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_with</span>(clean_column_name)</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for renaming the columns by following the 4 rules listed on the web.</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>clean_column_name <span class="ot">&lt;-</span> <span class="cf">function</span>(column_name){</span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>  column_name <span class="ot">&lt;-</span> column_name <span class="sc">|&gt;</span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># All lower-case</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tolower</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If multi-word, separated by underscores (_) not spaces</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Only numbers and simple letters, no punctuation or accents</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"[^a-z0-9_]"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Starting with a letter</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"^[^a-z]"</span>, <span class="st">""</span>, <span class="at">x =</span> _)</span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(column_name)</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> <span class="fu">load_netflix_data</span>()</span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>ORIGINAL_NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="co">#  to store the original Netflix data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -417,7 +439,7 @@ The following object is masked from 'package:readr':
 </ul>
 <p>Result:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "year"               "period"             "period_start"      
  [4] "period_end"         "title"              "runtime"           
@@ -430,7 +452,7 @@ The following object is masked from 'package:readr':
 <h3 class="anchored" data-anchor-id="fix-columns-type">Fix Columns Type</h3>
 <p>Before we fix the columns type of the data frame, it is important to check how <code>R</code> thinks our data is. By using <code>glimpse()</code> function, we can determine object types from the data frame.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 61,892
 Columns: 11
@@ -449,11 +471,11 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </div>
 <p>The result shows that column <code>$year</code> has <code>&lt;chr&gt;</code> datatype which we need to convert it to <code>&lt;int&gt;</code> data type. Not only that, column <code>$available_globally</code> has <code>&lt;chr&gt;</code> datatype whereas it has “Yes” or “No” values. It would be wiser if we convert those values to logical values either <code>TRUE</code> or <code>FALSE</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span>  NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">available_globally =</span> available_globally <span class="sc">==</span> <span class="st">"Yes"</span>    </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span>  NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">available_globally =</span> available_globally <span class="sc">==</span> <span class="st">"Yes"</span>    </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -463,7 +485,7 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 <h3 class="anchored" data-anchor-id="showing-the-statistical-result-from-the-data-frame">Showing the statistical result from the data frame</h3>
 <p><strong>1. Getting the basic dimensions of the data frame</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 61,892
 Columns: 11
@@ -482,7 +504,7 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </div>
 <p><strong>2. Taking a look at some basic (univariate) summary statistics for each column</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      year            period       period_start          period_end        
  Min.   :2023   Length   :61892   Min.   :2023-01-01   Min.   :2023-06-30  
@@ -512,7 +534,7 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </div>
 <p>Instead, we can use <code>skim()</code> function from the <code>skimr</code> package to get more type-specific information.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">skim</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">skim</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -786,11 +808,11 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </div>
 <p><strong>3. Take a look at 10 random rows from data frame</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="althzlcinm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#althzlcinm table {
@@ -1405,17 +1427,17 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">views =</span> <span class="fu">if_else</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(runtime) <span class="sc">&amp;</span> runtime <span class="sc">&gt;</span> <span class="dv">0</span>, </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(hours_viewed <span class="sc">*</span> <span class="dv">60</span> <span class="sc">/</span> runtime), </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">views =</span> <span class="fu">if_else</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(runtime) <span class="sc">&amp;</span> runtime <span class="sc">&gt;</span> <span class="dv">0</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(hours_viewed <span class="sc">*</span> <span class="dv">60</span> <span class="sc">/</span> runtime), </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      year            period       period_start          period_end        
@@ -1449,7 +1471,7 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </ol>
 <p>By logic, dropping 2 of 61,892 rows will not hurt the analysis result. But, let’s take a look which rows have the missing value.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(available_globally))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(available_globally))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 11
    year period period_start period_end title       runtime views hours_viewed
@@ -1462,7 +1484,7 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 </div>
 <p>They have same title “Other Shows” which I assume it’s a combination of many shows. Therefore, drop the rows is the best option we can take.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">filter_out</span>(<span class="fu">is.na</span>(available_globally))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> <span class="fu">filter_out</span>(<span class="fu">is.na</span>(available_globally))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -1473,87 +1495,87 @@ $ live_event         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 and 2</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>movies_date_range <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">started =</span> <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ended =</span> <span class="fu">max</span>(period_end, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_titles =</span> <span class="fu">n_distinct</span>(title)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>bridgerton_hours_watched <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Bridgerton"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_hours_watched =</span> <span class="fu">sum</span>(hours_viewed)) <span class="sc">|&gt;</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(total_hours_watched)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>bridgerton_start_date <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Bridgerton"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">start_date =</span> </span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(release_date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(start_date)</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>stranger_things_rows <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Stranger Things"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">str_detect</span>(title, <span class="st">":"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours_watched =</span> <span class="fu">sum</span>(hours_viewed),</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="fu">max</span>(</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(release_date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>strangers_hours <span class="ot">&lt;-</span> stranger_things_rows<span class="sc">$</span>total_hours_watched</span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>strangers_start_date <span class="ot">&lt;-</span> stranger_things_rows<span class="sc">$</span>start_date</span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 5</span></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>n_2026H1_movies <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> </span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"2026H1"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_movies =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">pull</span>(n_movies)</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>top_movies <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"2026H1"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n=</span><span class="fu">round</span>(<span class="fl">0.2</span> <span class="sc">*</span> n_2026H1_movies), <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="co"># to get 20% of most watched movie</span></span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_hours =</span> <span class="fu">first</span>(top_20percent_hours),</span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_hours =</span> <span class="fu">first</span>(overall_hours),</span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10_percentage  =</span> <span class="fu">percent</span>((top_10_hours <span class="sc">/</span> overall_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>), </span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_percentage  =</span> <span class="fu">percent</span>((top_20percent_hours <span class="sc">/</span> overall_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>), </span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>top_10_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_10_hours</span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>top_20percent_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_20percent_hours</span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>overall_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>overall_hours</span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>top_10_percentage <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_10_percentage</span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a>top_20percent_percentage <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_20percent_percentage</span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a><span class="co"># 6</span></span>
-<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a>by_title <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(title, available_globally) <span class="sc">|&gt;</span></span>
-<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_global =</span> <span class="fu">sum</span>(available_globally),</span>
-<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_all =</span> <span class="fu">n</span>(),</span>
-<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_percentage =</span> <span class="fu">round</span>((n_global <span class="sc">/</span> n_all <span class="sc">*</span> <span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>by_hours <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_global =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(available_globally, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
-<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_all =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_percentage =</span> <span class="fu">round</span>((hours_global <span class="sc">/</span> hours_all <span class="sc">*</span> <span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 and 2</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>movies_date_range <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">started =</span> <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ended =</span> <span class="fu">max</span>(period_end, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_titles =</span> <span class="fu">n_distinct</span>(title)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>bridgerton_hours_watched <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Bridgerton"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_hours_watched =</span> <span class="fu">sum</span>(hours_viewed)) <span class="sc">|&gt;</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(total_hours_watched)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>bridgerton_start_date <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Bridgerton"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">start_date =</span> </span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(release_date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(start_date)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>stranger_things_rows <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"Stranger Things"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">str_detect</span>(title, <span class="st">":"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours_watched =</span> <span class="fu">sum</span>(hours_viewed),</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="fu">max</span>(</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(period_start, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(release_date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>strangers_hours <span class="ot">&lt;-</span> stranger_things_rows<span class="sc">$</span>total_hours_watched</span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>strangers_start_date <span class="ot">&lt;-</span> stranger_things_rows<span class="sc">$</span>start_date</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 5</span></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>n_2026H1_movies <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> </span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"2026H1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_movies =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">pull</span>(n_movies)</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>top_movies <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"2026H1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n=</span><span class="fu">round</span>(<span class="fl">0.2</span> <span class="sc">*</span> n_2026H1_movies), <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="co"># to get 20% of most watched movie</span></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_hours =</span> <span class="fu">first</span>(top_20percent_hours),</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_hours =</span> <span class="fu">first</span>(overall_hours),</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10_percentage  =</span> <span class="fu">percent</span>((top_10_hours <span class="sc">/</span> overall_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>), </span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_20percent_percentage  =</span> <span class="fu">percent</span>((top_20percent_hours <span class="sc">/</span> overall_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>), </span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>top_10_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_10_hours</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>top_20percent_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_20percent_hours</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>overall_hours <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>overall_hours</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>top_10_percentage <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_10_percentage</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>top_20percent_percentage <span class="ot">&lt;-</span> top_movies<span class="sc">$</span>top_20percent_percentage</span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a><span class="co"># 6</span></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>by_title <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(title, available_globally) <span class="sc">|&gt;</span></span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_global =</span> <span class="fu">sum</span>(available_globally),</span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_all =</span> <span class="fu">n</span>(),</span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_percentage =</span> <span class="fu">round</span>((n_global <span class="sc">/</span> n_all <span class="sc">*</span> <span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>by_hours <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_global =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(available_globally, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_all =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_percentage =</span> <span class="fu">round</span>((hours_global <span class="sc">/</span> hours_all <span class="sc">*</span> <span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ol type="1">
@@ -1582,34 +1604,34 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, hours_viewed) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">sum</span>(hours_viewed),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="fu">percent</span>((hours_viewed <span class="sc">/</span> total_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>total_hours) <span class="sc">|&gt;</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title=</span><span class="fu">md</span>(<span class="st">"**Top NETFLIX Title Every Period**"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="fu">md</span>(<span class="st">"Period"</span>), </span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"Top Title"</span>), </span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_viewed =</span> <span class="fu">md</span>(<span class="st">"Hours Viewed"</span>),</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="fu">md</span>(<span class="st">"Share of Total Hours Viewed"</span>)         </span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> hours_viewed,</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> percentage,</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, hours_viewed) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">sum</span>(hours_viewed),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="fu">percent</span>((hours_viewed <span class="sc">/</span> total_hours), <span class="at">accuracy =</span> <span class="fl">0.01</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(hours_viewed, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>total_hours) <span class="sc">|&gt;</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title=</span><span class="fu">md</span>(<span class="st">"**Top NETFLIX Title Every Period**"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="fu">md</span>(<span class="st">"Period"</span>), </span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"Top Title"</span>), </span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours_viewed =</span> <span class="fu">md</span>(<span class="st">"Hours Viewed"</span>),</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="fu">md</span>(<span class="st">"Share of Total Hours Viewed"</span>)         </span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> hours_viewed,</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> percentage,</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="tjwppbtiyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -2130,33 +2152,33 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, runtime) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_title =</span> <span class="fu">n</span>(),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_runtime =</span> <span class="fu">sum</span>(runtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="dv">60</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">title_change =</span> n_title <span class="sc">/</span> <span class="fu">lag</span>(n_title) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Netflix Catalog Size Over The Period**"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="st">"Period"</span>,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_title =</span> <span class="st">"Number of Titles"</span>,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_runtime =</span> <span class="fu">md</span>(<span class="st">"Total Known Runtime (*hours*)"</span>),</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title_change =</span> <span class="st">"Title Change"</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(total_runtime) <span class="sc">|&gt;</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(n_title, total_runtime),</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    title_change, <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, runtime) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_title =</span> <span class="fu">n</span>(),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_runtime =</span> <span class="fu">sum</span>(runtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="dv">60</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">title_change =</span> n_title <span class="sc">/</span> <span class="fu">lag</span>(n_title) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Netflix Catalog Size Over The Period**"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="st">"Period"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_title =</span> <span class="st">"Number of Titles"</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_runtime =</span> <span class="fu">md</span>(<span class="st">"Total Known Runtime (*hours*)"</span>),</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title_change =</span> <span class="st">"Title Change"</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(total_runtime) <span class="sc">|&gt;</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(n_title, total_runtime),</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    title_change, <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="kdykqcjogj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -2677,45 +2699,45 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>staples <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(title) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">periods =</span> <span class="fu">n_distinct</span>(period),</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hours =</span> <span class="fu">mean</span>(hours_viewed),</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_hours =</span> <span class="fu">min</span>(hours_viewed),</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hours =</span> <span class="fu">sd</span>(hours_viewed)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Take top 1% average watched hours</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(periods <span class="sc">&gt;</span> <span class="dv">4</span>, mean_hours <span class="sc">&gt;</span> <span class="fu">quantile</span>(mean_hours, <span class="at">probs =</span> <span class="fl">0.99</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">z_min_hours_score =</span> <span class="fu">abs</span>(min_hours <span class="sc">-</span> mean_hours)<span class="sc">/</span>sd_hours,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv =</span> sd_hours <span class="sc">/</span> mean_hours</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cv <span class="sc">&lt;=</span> <span class="fl">0.4</span>, z_min_hours_score <span class="sc">&lt;=</span> <span class="fl">1.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(min_hours)) <span class="sc">|&gt;</span></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>z_min_hours_score)</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>staples <span class="sc">|&gt;</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Consistent Viewing Staples**"</span>),</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Observed in minimum five periods; CV ≤ 40%; Z-score ≤ 1.5; Ranked by minimum hours"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Title"</span>,</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">periods =</span> <span class="st">"Periods"</span>,</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hours =</span> <span class="st">"Average Hours Viewed"</span>,</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_hours =</span> <span class="st">"Minimum Hours Viewed"</span>,</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hours =</span> <span class="st">"SD Hours Viewed"</span>,</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv =</span> <span class="st">"Coefficient of Variation (CV)"</span></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(mean_hours, min_hours, sd_hours),</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    cv, <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>staples <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(title) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">periods =</span> <span class="fu">n_distinct</span>(period),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hours =</span> <span class="fu">mean</span>(hours_viewed),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_hours =</span> <span class="fu">min</span>(hours_viewed),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hours =</span> <span class="fu">sd</span>(hours_viewed)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Take top 1% average watched hours</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(periods <span class="sc">&gt;</span> <span class="dv">4</span>, mean_hours <span class="sc">&gt;</span> <span class="fu">quantile</span>(mean_hours, <span class="at">probs =</span> <span class="fl">0.99</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">z_min_hours_score =</span> <span class="fu">abs</span>(min_hours <span class="sc">-</span> mean_hours)<span class="sc">/</span>sd_hours,</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv =</span> sd_hours <span class="sc">/</span> mean_hours</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cv <span class="sc">&lt;=</span> <span class="fl">0.4</span>, z_min_hours_score <span class="sc">&lt;=</span> <span class="fl">1.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(min_hours)) <span class="sc">|&gt;</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>z_min_hours_score)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>staples <span class="sc">|&gt;</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Consistent Viewing Staples**"</span>),</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Observed in minimum five periods; CV ≤ 40%; Z-score ≤ 1.5; Ranked by minimum hours"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Title"</span>,</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">periods =</span> <span class="st">"Periods"</span>,</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hours =</span> <span class="st">"Average Hours Viewed"</span>,</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_hours =</span> <span class="st">"Minimum Hours Viewed"</span>,</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hours =</span> <span class="st">"SD Hours Viewed"</span>,</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv =</span> <span class="st">"Coefficient of Variation (CV)"</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(mean_hours, min_hours, sd_hours),</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    cv, <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="rejvgyjtlb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -3328,43 +3350,43 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>classified <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">content_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>      live_event <span class="sc">~</span> <span class="st">"Live Event"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"season|series"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)) <span class="sc">~</span> <span class="st">"TV Show"</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>      runtime <span class="sc">&gt;</span> <span class="dv">240</span> <span class="sc">~</span> <span class="st">"TV Show"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Movie"</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">live_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"Live Event"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"TV Show"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours,</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">movie_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"Movie"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>classified <span class="sc">|&gt;</span> </span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Live vs TV Show vs Movie Watched Hours Percentage**"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(total_hours) <span class="sc">|&gt;</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="st">"Period"</span>,</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="st">"Total Watched Hours"</span>,</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">live_frac =</span> <span class="st">"Live Event(%)"</span>,</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_frac =</span> <span class="st">"TV Show(%)"</span>,</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">movie_frac =</span> <span class="st">"Movie(%)"</span></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> total_hours,</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(live_frac, show_frac, movie_frac), <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>classified <span class="ot">&lt;-</span> NETFLIX_DATA <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">content_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>      live_event <span class="sc">~</span> <span class="st">"Live Event"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(title, <span class="fu">regex</span>(<span class="st">"season|series"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)) <span class="sc">~</span> <span class="st">"TV Show"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>      runtime <span class="sc">&gt;</span> <span class="dv">240</span> <span class="sc">~</span> <span class="st">"TV Show"</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Movie"</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="fu">sum</span>(hours_viewed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">live_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"Live Event"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"TV Show"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours,</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">movie_frac =</span> <span class="fu">sum</span>(<span class="fu">ifelse</span>(content_type <span class="sc">==</span> <span class="st">"Movie"</span>, hours_viewed, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>total_hours</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>classified <span class="sc">|&gt;</span> </span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Live vs TV Show vs Movie Watched Hours Percentage**"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(total_hours) <span class="sc">|&gt;</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="st">"Period"</span>,</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_hours =</span> <span class="st">"Total Watched Hours"</span>,</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">live_frac =</span> <span class="st">"Live Event(%)"</span>,</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_frac =</span> <span class="st">"TV Show(%)"</span>,</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">movie_frac =</span> <span class="st">"Movie(%)"</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> total_hours,</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(live_frac, show_frac, movie_frac), <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="rchypyldhn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -3894,40 +3916,40 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>format_content_rows <span class="ot">&lt;-</span>NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">format_content =</span> <span class="fu">ifelse</span>(live_event, <span class="st">"Live Event"</span>, <span class="st">"Pre-Taped"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period, format_content) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours =</span> <span class="fu">mean</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_tier_bar =</span> <span class="fu">quantile</span>(avg_hours, <span class="at">probs =</span> <span class="fl">0.99</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_toptier =</span> <span class="fu">ifelse</span>(hours_viewed <span class="sc">&gt;=</span> top_tier_bar, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">toptier_viewed_hour =</span> <span class="fu">ifelse</span>(is_toptier, hours_viewed, <span class="cn">NA_real_</span>),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nontoptier_viewed_hour =</span> <span class="fu">ifelse</span>(<span class="sc">!</span>is_toptier, hours_viewed, <span class="cn">NA_real_</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours_viewed =</span> <span class="fu">mean</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_top_tier =</span> <span class="fu">mean</span>(toptier_viewed_hour, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_nontop_tier =</span> <span class="fu">mean</span>(nontoptier_viewed_hour, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop_last"</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>format_content_rows <span class="sc">|&gt;</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Live vs Pre-Taped Content Comparison Table**"</span>),</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="fu">md</span>(<span class="st">"Average viewed hours for each format content"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(avg_hours_viewed) <span class="sc">|&gt;</span></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">format_content =</span> <span class="st">"Format Content"</span>,</span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours_viewed =</span> <span class="st">"All"</span>,</span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_top_tier =</span> <span class="st">"Top Tier"</span>,</span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_nontop_tier =</span> <span class="st">"Common"</span></span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_hours_viewed,avg_top_tier,avg_nontop_tier),</span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>format_content_rows <span class="ot">&lt;-</span>NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">format_content =</span> <span class="fu">ifelse</span>(live_event, <span class="st">"Live Event"</span>, <span class="st">"Pre-Taped"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period, format_content) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours =</span> <span class="fu">mean</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_tier_bar =</span> <span class="fu">quantile</span>(avg_hours, <span class="at">probs =</span> <span class="fl">0.99</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_toptier =</span> <span class="fu">ifelse</span>(hours_viewed <span class="sc">&gt;=</span> top_tier_bar, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">toptier_viewed_hour =</span> <span class="fu">ifelse</span>(is_toptier, hours_viewed, <span class="cn">NA_real_</span>),</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nontoptier_viewed_hour =</span> <span class="fu">ifelse</span>(<span class="sc">!</span>is_toptier, hours_viewed, <span class="cn">NA_real_</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours_viewed =</span> <span class="fu">mean</span>(hours_viewed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_top_tier =</span> <span class="fu">mean</span>(toptier_viewed_hour, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_nontop_tier =</span> <span class="fu">mean</span>(nontoptier_viewed_hour, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop_last"</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>format_content_rows <span class="sc">|&gt;</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Live vs Pre-Taped Content Comparison Table**"</span>),</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="fu">md</span>(<span class="st">"Average viewed hours for each format content"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move_to_end</span>(avg_hours_viewed) <span class="sc">|&gt;</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">format_content =</span> <span class="st">"Format Content"</span>,</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_hours_viewed =</span> <span class="st">"All"</span>,</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_top_tier =</span> <span class="st">"Top Tier"</span>,</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_nontop_tier =</span> <span class="st">"Common"</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_hours_viewed,avg_top_tier,avg_nontop_tier),</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">TRUE</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="sglxetinhx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -4397,91 +4419,91 @@ This questions leads to the <strong>Pareto principle</strong> or <strong>80/20 r
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<th colspan="4" id="2023H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2023H1</th>
+<th colspan="4" id="a2023H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2023H1</th>
 </tr>
 <tr class="gt_row_group_first even">
-<td class="gt_row gt_left" headers="2023H1  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2023H1  avg_top_tier">22,714,884</td>
-<td class="gt_row gt_right" headers="2023H1  avg_nontop_tier">965,450</td>
-<td class="gt_row gt_right" headers="2023H1  avg_hours_viewed">5,133,414</td>
+<td class="gt_row gt_left" headers="a2023H1  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2023H1  avg_top_tier">22,714,884</td>
+<td class="gt_row gt_right" headers="a2023H1  avg_nontop_tier">965,450</td>
+<td class="gt_row gt_right" headers="a2023H1  avg_hours_viewed">5,133,414</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="4" id="2023H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2023H2</th>
+<th colspan="4" id="a2023H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2023H2</th>
 </tr>
 <tr class="gt_row_group_first even">
-<td class="gt_row gt_left gt_striped" headers="2023H2  format_content">Pre-Taped</td>
-<td class="gt_row gt_right gt_striped" headers="2023H2  avg_top_tier">35,234,868</td>
-<td class="gt_row gt_right gt_striped" headers="2023H2  avg_nontop_tier">2,518,386</td>
-<td class="gt_row gt_right gt_striped" headers="2023H2  avg_hours_viewed">9,845,489</td>
+<td class="gt_row gt_left gt_striped" headers="a2023H2  format_content">Pre-Taped</td>
+<td class="gt_row gt_right gt_striped" headers="a2023H2  avg_top_tier">35,234,868</td>
+<td class="gt_row gt_right gt_striped" headers="a2023H2  avg_nontop_tier">2,518,386</td>
+<td class="gt_row gt_right gt_striped" headers="a2023H2  avg_hours_viewed">9,845,489</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="4" id="2024H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2024H1</th>
+<th colspan="4" id="a2024H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2024H1</th>
 </tr>
 <tr class="gt_row_group_first even">
-<td class="gt_row gt_left" headers="2024H1  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2024H1  avg_top_tier">36,735,614</td>
-<td class="gt_row gt_right" headers="2024H1  avg_nontop_tier">2,538,918</td>
-<td class="gt_row gt_right" headers="2024H1  avg_hours_viewed">10,040,356</td>
+<td class="gt_row gt_left" headers="a2024H1  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2024H1  avg_top_tier">36,735,614</td>
+<td class="gt_row gt_right" headers="a2024H1  avg_nontop_tier">2,538,918</td>
+<td class="gt_row gt_right" headers="a2024H1  avg_hours_viewed">10,040,356</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="4" id="2024H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2024H2</th>
+<th colspan="4" id="a2024H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2024H2</th>
 </tr>
 <tr class="gt_row_group_first even">
-<td class="gt_row gt_left gt_striped" headers="2024H2  format_content">Live Event</td>
-<td class="gt_row gt_right gt_striped" headers="2024H2  avg_top_tier">235,700,000</td>
-<td class="gt_row gt_right gt_striped" headers="2024H2  avg_nontop_tier">300,000</td>
-<td class="gt_row gt_right gt_striped" headers="2024H2  avg_hours_viewed">78,766,667</td>
+<td class="gt_row gt_left gt_striped" headers="a2024H2  format_content">Live Event</td>
+<td class="gt_row gt_right gt_striped" headers="a2024H2  avg_top_tier">235,700,000</td>
+<td class="gt_row gt_right gt_striped" headers="a2024H2  avg_nontop_tier">300,000</td>
+<td class="gt_row gt_right gt_striped" headers="a2024H2  avg_hours_viewed">78,766,667</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="2024H2  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2024H2  avg_top_tier">36,077,368</td>
-<td class="gt_row gt_right" headers="2024H2  avg_nontop_tier">2,447,889</td>
-<td class="gt_row gt_right" headers="2024H2  avg_hours_viewed">9,884,143</td>
+<td class="gt_row gt_left" headers="a2024H2  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2024H2  avg_top_tier">36,077,368</td>
+<td class="gt_row gt_right" headers="a2024H2  avg_nontop_tier">2,447,889</td>
+<td class="gt_row gt_right" headers="a2024H2  avg_hours_viewed">9,884,143</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="4" id="2025H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2025H1</th>
+<th colspan="4" id="a2025H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2025H1</th>
 </tr>
 <tr class="gt_row_group_first odd">
-<td class="gt_row gt_left gt_striped" headers="2025H1  format_content">Live Event</td>
-<td class="gt_row gt_right gt_striped" headers="2025H1  avg_top_tier">7,351,515</td>
-<td class="gt_row gt_right gt_striped" headers="2025H1  avg_nontop_tier">1,049,091</td>
-<td class="gt_row gt_right gt_striped" headers="2025H1  avg_hours_viewed">3,412,500</td>
+<td class="gt_row gt_left gt_striped" headers="a2025H1  format_content">Live Event</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H1  avg_top_tier">7,351,515</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H1  avg_nontop_tier">1,049,091</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H1  avg_hours_viewed">3,412,500</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="2025H1  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2025H1  avg_top_tier">35,619,688</td>
-<td class="gt_row gt_right" headers="2025H1  avg_nontop_tier">2,348,235</td>
-<td class="gt_row gt_right" headers="2025H1  avg_hours_viewed">9,550,917</td>
+<td class="gt_row gt_left" headers="a2025H1  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2025H1  avg_top_tier">35,619,688</td>
+<td class="gt_row gt_right" headers="a2025H1  avg_nontop_tier">2,348,235</td>
+<td class="gt_row gt_right" headers="a2025H1  avg_hours_viewed">9,550,917</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="4" id="2025H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2025H2</th>
+<th colspan="4" id="a2025H2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2025H2</th>
 </tr>
 <tr class="gt_row_group_first even">
-<td class="gt_row gt_left gt_striped" headers="2025H2  format_content">Live Event</td>
-<td class="gt_row gt_right gt_striped" headers="2025H2  avg_top_tier">5,472,727</td>
-<td class="gt_row gt_right gt_striped" headers="2025H2  avg_nontop_tier">626,087</td>
-<td class="gt_row gt_right gt_striped" headers="2025H2  avg_hours_viewed">2,194,118</td>
+<td class="gt_row gt_left gt_striped" headers="a2025H2  format_content">Live Event</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H2  avg_top_tier">5,472,727</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H2  avg_nontop_tier">626,087</td>
+<td class="gt_row gt_right gt_striped" headers="a2025H2  avg_hours_viewed">2,194,118</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="2025H2  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2025H2  avg_top_tier">33,615,967</td>
-<td class="gt_row gt_right" headers="2025H2  avg_nontop_tier">2,297,426</td>
-<td class="gt_row gt_right" headers="2025H2  avg_hours_viewed">9,233,857</td>
+<td class="gt_row gt_left" headers="a2025H2  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2025H2  avg_top_tier">33,615,967</td>
+<td class="gt_row gt_right" headers="a2025H2  avg_nontop_tier">2,297,426</td>
+<td class="gt_row gt_right" headers="a2025H2  avg_hours_viewed">9,233,857</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="4" id="2026H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2026H1</th>
+<th colspan="4" id="a2026H1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2026H1</th>
 </tr>
 <tr class="gt_row_group_first odd">
-<td class="gt_row gt_left gt_striped" headers="2026H1  format_content">Live Event</td>
-<td class="gt_row gt_right gt_striped" headers="2026H1  avg_top_tier">6,897,297</td>
-<td class="gt_row gt_right gt_striped" headers="2026H1  avg_nontop_tier">1,100,000</td>
-<td class="gt_row gt_right gt_striped" headers="2026H1  avg_hours_viewed">2,933,333</td>
+<td class="gt_row gt_left gt_striped" headers="a2026H1  format_content">Live Event</td>
+<td class="gt_row gt_right gt_striped" headers="a2026H1  avg_top_tier">6,897,297</td>
+<td class="gt_row gt_right gt_striped" headers="a2026H1  avg_nontop_tier">1,100,000</td>
+<td class="gt_row gt_right gt_striped" headers="a2026H1  avg_hours_viewed">2,933,333</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="2026H1  format_content">Pre-Taped</td>
-<td class="gt_row gt_right" headers="2026H1  avg_top_tier">34,252,616</td>
-<td class="gt_row gt_right" headers="2026H1  avg_nontop_tier">2,255,300</td>
-<td class="gt_row gt_right" headers="2026H1  avg_hours_viewed">9,075,895</td>
+<td class="gt_row gt_left" headers="a2026H1  format_content">Pre-Taped</td>
+<td class="gt_row gt_right" headers="a2026H1  avg_top_tier">34,252,616</td>
+<td class="gt_row gt_right" headers="a2026H1  avg_nontop_tier">2,255,300</td>
+<td class="gt_row gt_right" headers="a2026H1  avg_hours_viewed">9,075,895</td>
 </tr>
 </tbody>
 </table>
@@ -4494,12 +4516,12 @@ Let’s check what are the titles for the top-tier live event contents in 2025H2
 <div class="cell">
 <details class="code-fold">
 <summary>Click here to show/hide the Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    live_event,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    period <span class="sc">==</span> <span class="st">"2024H2"</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, hours_viewed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>NETFLIX_DATA <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    live_event,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    period <span class="sc">==</span> <span class="st">"2024H2"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, title, hours_viewed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3

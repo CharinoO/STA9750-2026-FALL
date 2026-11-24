@@ -15,7 +15,7 @@ website:
       - href: index.qmd
         text: Home
       - href: mp01.qmd
-        text: MP01 - What We Watched: Exploring Netflix Viewing Data
+        text: MP01 - Exploring Netflix Viewing Data
       - href: mp02.qmd
         text: MP02 - Green Transit Alliance Awards
       - href: mp03.qmd
